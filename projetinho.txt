@@ -1,0 +1,64 @@
+			Iniciação do "protocolo"
+
+    Cada usuário terá um endreço {user ID databank} e o databank 
+será atualizado para cada novo usuário ou informação na lista, 
+sendo que para todos terá que ser atualizado, o TXT de usuários
+será criado com o saldo e históricos de transação, estatistícas 
+e junção/integrações a servidores VOX que guardaram outros logs,
+cada usuário terá:
+ -Nome de usuário
+ -Vox ID (ID de procura de usuários)
+ -Sobre mim ou BIO
+ -Foto de perfil personalizada
+ -Personagem carregado/editado
+ -Amizades
+ -Troféus/Emblemas/Títulos
+ -Quantidade de criptomoedas VOX
+ -Integrações com servidores de jogo (VGS)
+ -Banner de perfil
+ -Carteira vox
+ -USER CORE ID (NUNCA COMPARTILHE, ID DE ACESSO DIRETO Á CONTA)
+
+
+    Cada servidor multijogador deve ser registrado, mas como?
+utilizando o {VOX gaming servers} que será onde os servidores 
+disponibilizaram o seu endereço de servidor oficial ou endereço 
+IP e PORTA para jogadores conseguirem criar, cada servidor terá:
+ -Nome do servidor
+ -Dono do servidor
+ -Contato com ADM/OWNERS (incluído servidores do discord)
+ -Status (jogadores online, estado do servidor)
+ -Fundo de "economia" do servidor (moedas VOX)
+ <privado>Perfil dos jogadores
+ <privado>LOGs dos jogadores e do próprio servidor
+
+    Cada usuário possuirá um endereço de estoque de moedas VOX,
+apeliadado de {PROJECT VOX cripto core} onde cada perfil terá:
+ -Geração de carteira .VOX
+ -Geração de endereço de recebimento
+ -Geração de endereço de envio
+
+    A criptomoeda VOX é centralizada e apenas utilizável dentro do
+PROJECT VOX para evitar pessoas com condições financeiras melhores
+comprarem a moeda e possuiírem vantagem acima de outros com menos
+condições financeiras, a moeda VOX é minerável apartir de um soft-
+ware disponível para download no GIT HUB do DAN-X, no futuro...
+
+    A API do PROJECT VOX estará sempre em atualização contínua
+devido as atualização do projeto e seu núcleo principal, as funções
+iniciais desta API serão requisições de perfis e servidores e a 
+"VAULT" o authenticador do project vox e suas respectivas contas
+armazenadas
+
+
+
+
+
+      PROJECT VOX cripto core-\       /-user ID databank (USR-ID)
+      			       \     /
+				\   /
+				 \ /
+			      [VOX CORE]
+				 / \
+				/   \
+  	       API PROJECT VOX-/     \-VOX game servers (VGS-ID)
