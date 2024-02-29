@@ -1,6 +1,6 @@
 #include <iostream>
 #include <stdlib.h>
-//test
+
 void gitupdate(){
     system("cd ~/PROJEECT-VOX");
     system("git pull");
