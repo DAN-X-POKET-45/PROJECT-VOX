@@ -6,29 +6,48 @@
 
 class xml{
 public:
-    std::string raw_xml_content;
+    std::string xml_raw_content;
     std::string tag_name;
     std::string tag_valor;
+    std::string xml_file_path;
     //objeto de entrada do arquivo xml
     std::ifstream xml_archive;
 
-    void open(std::string path){
+    bool open(std::string path){
         xml_archive.open(path);
+        xml_file_path = path;
 
         //verificador de arquivo aberto
         if(!xml_archive.is_open()){
             std::cout << "Failed to open XML archive: " << path << std::endl;
+            return false;
         }
 
+        xml_archive >> xml_raw_content;
+
         //construtor de tags
-        build_tags();
+        build_tags(path);
         build_valors(path);
+        return true;
     }
 
+    int xml_size(){
+        std::string _data;
+        int _archive_size=0;
 
+        xml_archive.open(xml_file_path);
+
+        while(getline(xml_archive, _data)){
+            _archive_size += _data.size();
+        }
+
+        xml_archive.close();
+        return _archive_size;
+    }
 
 private:
-    void build_tags(){
+    void build_tags(std::string path){
+        xml_archive.open(path);
         std::string rawdata;
 
         while(std::getline(xml_archive, rawdata)){
@@ -86,9 +105,8 @@ int main(){
     xml arquivo_de_teste;
 
     arquivo_de_teste.open("test.xml");
+    std::cout << "tamanho do arquivo xml: " << arquivo_de_teste.xml_size() << std::endl;
 
-    std::cout << arquivo_de_teste.raw_xml_content << std::endl;
-    std::cout << arquivo_de_teste.raw_xml_content.size() << std::endl;
     //std::cout << arquivo_de_teste.tag_name << std::endl;
     return 1;
 }

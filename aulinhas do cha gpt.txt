@@ -1,0 +1,17 @@
+Declaração e definição de métodos em classes C++:
+
+Métodos são funções definidas dentro de uma classe em C++.
+A declaração de métodos ocorre dentro da definição da classe, indicando o protótipo dos métodos.
+A definição de métodos pode ocorrer dentro ou fora da definição da classe.
+Implementação de métodos dentro da classe:
+
+Quando você implementa um método dentro da definição da classe, não precisa usar nomeClasse:: antes do nome do método.
+Os métodos definidos dentro da definição da classe são considerados pertencentes à classe automaticamente.
+Implementação de métodos fora da classe:
+
+Se você implementar um método fora da definição da classe, precisará usar nomeClasse:: antes do nome do método.
+Isso é necessário para associar a implementação do método à classe correta.
+Uso de destrutores:
+
+Os destrutores em C++ são usados para liberar recursos alocados pela classe quando um objeto é destruído.
+Se sua classe gerencia recursos que precisam ser liberados explicitamente (como arquivos abertos), é uma boa prática definir um destrutor para garantir que esses recursos sejam liberados corretamente.

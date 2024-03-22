@@ -1,0 +1,28 @@
+Índice de tipo de arquivo:
+
+XDL (Extensive Direct Language)
+
+	.vox.xdl : Um banco de dados local, semelhante ao JSON e XML só que evoluído para aplicações específicas e com funções especiais
+		que funcionam apenas com o vox core e sua API, especificamente este tipo de arquivo se solidifica em uma quase "linguagem de 
+		programação" alternativa, de fácil compreensão e eficiênica relativa, baseada em "key:valor" utilizando tags, veja os exemplos:
+		
+		exemplo de utilização de sistema de armazenamento básico (chave:valor) do XDL
+		
+		[:] [isto é uma tag : este é seu valor] [key:value]
+		
+		
+	    O sistema de contêniers funciona como um grupo de informações que NÃO PODEM ser aninhadas umas com as outras, pode ser útil
+		para contar quantos elementos tem em um contênier,listar informações específicas
+		veja os exemplos:
+		
+		exemplo de utilização de contênieres de informações do XDL
+		
+	    <>  <nome do contênier> <container-name>
+	    [:] [isto é uma tag : este é seu valor] [key:value]
+	    [:] [isto é uma tag : este é seu valor] [key:value]
+	    [:] [isto é uma tag : este é seu valor] [key:value]
+	    </> </fechamento do contênier> </container-name>
+		
+	
+	
+	.vox.save | Arquivo de salvamento do jogo 
