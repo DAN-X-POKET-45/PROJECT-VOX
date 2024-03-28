@@ -117,5 +117,5 @@ int main(){
     std::cout << "tamanho do arquivo XDL: " << arquivo_de_teste.xdl_size() << std::endl;
 
     //std::cout << arquivo_de_teste.tag_name << std::endl;
-    return 1;
+    return 0;
 }
