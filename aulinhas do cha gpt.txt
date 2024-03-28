@@ -15,3 +15,31 @@ Uso de destrutores:
 
 Os destrutores em C++ são usados para liberar recursos alocados pela classe quando um objeto é destruído.
 Se sua classe gerencia recursos que precisam ser liberados explicitamente (como arquivos abertos), é uma boa prática definir um destrutor para garantir que esses recursos sejam liberados corretamente.
+
+###COMO COMPILAR ARQUIVOS DE IMPLEMENTAÇÃO ###
+
+
+Quando você compila um arquivo de implementação (.cpp), o resultado da compilação é um arquivo objeto (.o no Linux/Unix ou .obj no Windows). Esse arquivo objeto contém o código de máquina compilado correspondente ao código fonte contido no arquivo .cpp.
+
+No entanto, o arquivo objeto resultante não é o binário final do seu programa. Você precisará vincular (link) esse arquivo objeto com outros arquivos objetos e bibliotecas que seu programa pode depender para criar o binário final executável.
+
+Geralmente, ao compilar um programa em C++ com vários arquivos de origem (.cpp), você compila cada arquivo de origem separadamente em arquivos objetos e, em seguida, vincula todos esses arquivos objetos juntos para criar o binário final executável.
+
+Por exemplo, suponha que você tenha três arquivos de origem: main.cpp, util.cpp e algoritmos.cpp. Ao compilar esses arquivos, você primeiro compila cada um deles em arquivos objetos:
+
+sh
+Copy code
+g++ -c main.cpp -o main.o
+g++ -c util.cpp -o util.o
+g++ -c algoritmos.cpp -o algoritmos.o
+Em seguida, você vincula esses arquivos objetos juntos para criar o binário final:
+
+sh
+Copy code
+g++ main.o util.o algoritmos.o -o meu_programa
+O binário final é o arquivo executável meu_programa, que pode ser executado no seu sistema operacional. Este é o arquivo que contém todo o código necessário para executar seu programa.
+
+
+
+
+
