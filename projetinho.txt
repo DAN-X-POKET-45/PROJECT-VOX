@@ -54,11 +54,11 @@ armazenadas
 
 
 
-      PROJECT VOX cripto core-\       /-user ID databank (USR-ID)
-      			       \     /
-				\   /
-				 \ /
-			      [VOX CORE]
-				 / \
-				/   \
+  PROJECT VOX cripto core-\       /-user ID databank (USR-ID)
+      			       	   \     /
+							\   /
+							 \ /
+			      		 [VOX CORE]
+				 			 / \
+							/   \
   	       API PROJECT VOX-/     \-VOX game servers (VGS-ID)

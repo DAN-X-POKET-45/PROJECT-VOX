@@ -1,4 +1,4 @@
-Índice de tipo de arquivo:
+eÍndice de tipo de arquivo:
 
 XDL (Extensive Direct Language)
 
@@ -9,18 +9,24 @@ XDL (Extensive Direct Language)
 		exemplo de utilização de sistema de armazenamento básico (chave:valor) do XDL
 		
 		<argumentos de pré leitura e declaração de versão>
-		[chave:valor]
+		grupo{[chave:valor]}
 		
 		<XDL-BUILD=1.0>
 
-		[IP:192.168.0.1]
-		[virginity:True]
-		[URL:domain.com]
+		my_server_config{
+			[IP:192.168.0.1]
+			[virginity:True]
+			[URL:domain.com]
+		}
 		
 	    O sistema de contêniers funciona como um grupo de informações que NÃO PODEM ser aninhadas umas com as outras, pode ser útil
 		para contar quantos elementos tem em um contênier e listar ou agrupar certas informações específicas ou para organizá-las
 		cada arquivo XDL é u contênier de informações chave valor, cada arquivo possui um declarador da linha inicial que não possui
 		serventia no momento devido a não ser muito útil, mas possui um declarador de informações DENTRO do seu código fonte
-	
+
+		O tipo de arquivo xdl é um tipo de arquivo para ser usaod em redes de blocos (blockchain) ou banco de dados local como o JSON
+		MAS também é um tipo de arquivo para o PROTOCOLO VOX um arquivo de transferencia de dados, leve e simples não registrad como um
+		arquivo específico, mas é um arquivo de texto comum assim como os outros, também teremos o compilador de XDL num futuro próximo
+		
 	
 	

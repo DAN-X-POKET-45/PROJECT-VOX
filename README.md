@@ -1,4 +1,10 @@
 # PROJECT-VOX
 PRIVATE PROJECT VOX SOURCE CODE
 
-POJECT VOX CLI client surce code
+CONTENT:
+
+PROJECT VOX CLI client surce code
+
+PROJECT VOX XDL CORE source code
+
+PROJECT VOX BXDL compiler source code

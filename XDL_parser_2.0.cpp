@@ -17,7 +17,7 @@ namespace XDL{
         const std::string developer="DAN-X";
         const std::string madein="POSITIVO STILO (H14BT58) 2013-NOW";
         const std::string secure_mode="disabled";
-        const std::string license="PROJECT-VOX team licensed by DAN-X, teh creator";
+        const std::string license="PROJECT-VOX team licensed by DAN-X, the creator";
         }
     };
 
@@ -44,7 +44,7 @@ namespace XDL{
                 return;
             }
 
-            //Lê o conteúdo bruto do arquivo xdl e repassa a uma variável de conteúdo bruto
+            //Lê o conteúdo bruto do arquivo xdl e repassa a uma variável de conteúdo bruto para verificar se está vazia
             xdl_archive >> xdl_raw_content;
 
             if(xdl_raw_content.empty()){
