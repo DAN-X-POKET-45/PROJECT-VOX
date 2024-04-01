@@ -1,2 +1,5 @@
-[root:Value]
-[flag:Value]
+root{
+    [list:Value]
+    [flag:Value]
+    [mode:Value]
+}
