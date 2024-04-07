@@ -93,13 +93,23 @@ namespace XDL{
 
             //Variável variativa do nome de um grupo de tags e valores
             std::string _variable_group_name="";
+
+            //variável variativa de fechamento de grupos
+            int group_entry=0;
             
             while(std::getline(xdl_archive, rawdata)){
-                //indentificadores de posição dos caracteres de declaração
-
                 //verifica se é um grupo
                 if(rawdata.find(':')==std::string::npos && rawdata.find('{')!=std::string::npos){
+                    if(group_entry<0){
+                        std::cout << "this group-> " << _variable_group_name << " does not closed" << std::endl;
+                        xdl_archive.close();
+                        return;
+                    }
+
                     int _group_name_right_pos = rawdata.find_first_of('{');
+
+                    //indica que o grupo está aberto
+                    group_entry--;
 
                     //organizador de grupo
                     _variable_group_name = rawdata.substr(0, _group_name_right_pos);
@@ -112,7 +122,7 @@ namespace XDL{
                 if(rawdata.find(':')!=std::string::npos && rawdata.find('[')!=std::string::npos && rawdata.find(']')!=std::string::npos && rawdata.find('{')==std::string::npos) {
                     int _left_key_pos = rawdata.find_first_of('[');
                     int _right_key_pos = rawdata.find_last_of(']');
-                    int _two_point_pos = rawdata.find_first_of(':');
+                    int _two_point_pos = rawdata.find_first_of(':');              
 
                     //organizador e atribuidor de tags
                     _variable_tag_name = rawdata.substr(_left_key_pos + 1, _two_point_pos - _left_key_pos - 1);
@@ -126,8 +136,18 @@ namespace XDL{
                     std::cout << "    " << "tag...: " << _variable_tag_name << std::endl;
                     std::cout << "    " <<"valor.: " << tag_valor << std::endl << std::endl;
                 }
-                current_line++;
+
+                if(rawdata.find('}')!=std::string::npos){
+                    //fecha o grupo de tags
+                    group_entry++;
+                }
             }
+            if(group_entry<0){
+            std::cout << "this group-> " << _variable_group_name << " does not closed" << std::endl;
+            xdl_archive.close();
+            return;
+            }
+
             xdl_archive.close();
         }    
     };
