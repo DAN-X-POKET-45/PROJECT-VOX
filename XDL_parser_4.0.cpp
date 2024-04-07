@@ -8,13 +8,13 @@ namespace XDL{
     public:
     info(){
         //declarador de dados da versão compilada atual do XDL
-        const std::string version="3.0";
+        const std::string version="4.0";
         const std::string description="XDL is a local databank to sotore data in single containers or archives created to store tridimensional data for game saves/imports/exports";
         const std::string arch="AMD-64";
         const std::string encode="UTF-8";
         const std::string mode="read-only";
         const std::string dependencies="VOX-CORE";
-        const std::string codename="SEXY-DL";
+        const std::string codename="SISTER-DL";
         const std::string developer="DAN-X";
         const std::string madein="POSITIVO STILO (H14BT58) 2013-NOW";
         const std::string secure_mode="disabled";
