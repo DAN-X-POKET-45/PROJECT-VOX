@@ -41,5 +41,21 @@ O binário final é o arquivo executável meu_programa, que pode ser executado n
 
 
 
+    GLFW: É uma biblioteca de código aberto para criar janelas com OpenGL e lidar com entradas de teclado, 
+mouse, joystick, etc. É bem adequada para desenvolvimento de jogos e outras aplicações gráficas em tempo 
+real1.
+    GLUT (OpenGL Utility Toolkit): Serve para gerenciar janelas de aplicativos OpenGL e oferece funcionalidades
+básicas para a criação de interfaces, como manipulação de janelas e eventos de entrada. No entanto, ela não
+é mais mantida ativamente1.
+    GLEW (OpenGL Extension Wrangler Library): É utilizada para carregar extensões OpenGL de maneira fácil
+e portável1.
+    Assimp (Open Asset Import Library): Uma biblioteca poderosa para carregar e processar modelos 3D de 
+vários formatos. É muito útil para importar modelos de várias fontes e armazená-los em um formato específico
+do motor para acesso fácil e rápido1.
+    Qt: Embora seja mais conhecida por suas capacidades de interface gráfica do usuário (GUI), também 
+oferece suporte para algumas funcionalidades 3D através do módulo Qt 3D2.
+    wxWidgets: Outra biblioteca para criar interfaces gráficas que também pode ser usada para aplicações 3D2.
+
+
 
 
