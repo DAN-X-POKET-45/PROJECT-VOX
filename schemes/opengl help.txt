@@ -1,0 +1,15 @@
+frameworks/libaries:
+
+GLUT  |-> Antiquado e semelhante ao GLFW criador/gerenciador de janelas que lida com eventos e dispositivos de interface humana como teclado e controle, é multiplataforma e universal
+GLAD  |-> Aparentemente um recuperador de funçoẽs em tempo de execussão para aplicações que usam a opengl, isto é muito complexo pelo visto, é multiplataforma e universal 
+GLFW  |-> semelhante ao GLUT o novo GLUT, é o criador/gerenciador de janelas que lida com eventos e dispositivos de interface humana como teclado e controle, é multiplataforma e universal
+SFML  |-> O básico do básico para manipulação de áudio, vídeo, rede, janelas eventos e etc, quase uma engine completa e simples de se aprender, multiplataforma não universal
+GLEW  |-> Carregador de extensões OpenGL
+OPENCL|-> É uma arquitetura que permite escrever programas para plataformas heterogêneas, incluindo CPUs, GPUs e outros processadores
+SOIL  |-> Gerenciador de imagens, mapeamento de textura e etc, é multiplataforma e universal
+ASSIMP|-> 
+
+a ser utilizado:
+
+GLFW para controle de janelas e "fraes/contexto"
+GLAD, ou em segunda insânica o GLEW, para o carregaento de "funções" opengl

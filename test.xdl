@@ -1,5 +1,0 @@
-root{
-    [list:Value]
-    [flag:Value]
-    [mode:Value]
-}
