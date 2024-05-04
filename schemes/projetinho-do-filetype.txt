@@ -21,12 +21,19 @@ XDL (Extensive Direct Language)
 		
 	    O sistema de contêniers funciona como um grupo de informações que NÃO PODEM ser aninhadas umas com as outras, pode ser útil
 		para contar quantos elementos tem em um contênier e listar ou agrupar certas informações específicas ou para organizá-las
-		cada arquivo XDL é u contênier de informações chave valor, cada arquivo possui um declarador da linha inicial que não possui
-		serventia no momento devido a não ser muito útil, mas possui um declarador de informações DENTRO do seu código fonte
+		cada arquivo XDL é um contênier de informações chave valor, cada arquivo possui um declarador da linha inicial que não possui
+		serventia no momento devido a não ser muito útil, mas possui um declarador de informações DENTRO do seu código fonte.
 
-		O tipo de arquivo xdl é um tipo de arquivo para ser usaod em redes de blocos (blockchain) ou banco de dados local como o JSON
-		MAS também é um tipo de arquivo para o PROTOCOLO VOX um arquivo de transferencia de dados, leve e simples não registrad como um
-		arquivo específico, mas é um arquivo de texto comum assim como os outros, também teremos o compilador de XDL num futuro próximo
+		Agora focando no sistema de listagem, tem como você declarar um item com a diretiva "nome do grupo{item 1, item 2, item 3, item 4, item 5}"
+		este tipo de listagem é especificamente para o sitema std::vector, um vetor de valores, o interpretador XDL vai ler linhas de listagem procurando
+		pelos caractéres "{" "}" e se encontra-los irá criar um tipo separado com o nome do grupo e esse grupo será anexado a uma sequência de valores, EX:
+
+		students{Gabriel, Luíza, Lorraine, João, Eduarda}
+
+		O tipo de arquivo xdl é um tipo de arquivo para ser usado em redes de blocos (blockchain) ou banco de dados local como o JSON
+		MAS também é um tipo de arquivo para o PROTOCOLO VOX, um arquivo de transferencia de dados, leve e simples não registrado como um
+		arquivo específico, mas é um arquivo de texto comum assim como os outros, também teremos o compilador de XDL num futuro próximo para
+		proteger as informações por linhas binárias...
 		
 	
 	

@@ -7,13 +7,13 @@
 namespace xdl{
     info::info(){
         //declarador de dados da versão compilada atual do XDL no qual dno momento dve ser inútil dentro do arquivo
-        const std::string version="7.0";
+        const std::string version="8.0";
         const std::string description="XDL is a local databank to sotore data in single containers or archives created to store tridimensional data for game saves/imports/exports";
         const std::string arch="AMD-64";
         const std::string encode="UTF-8";
-        const std::string mode="read-only";
+        const std::string mode="Read and Write";
         const std::string dependencies="VOX-CORE";
-        const std::string codename="NEWAVE-DL";
+        const std::string codename="HENPAY-DL";
         const std::string developer="DAN-X";
         const std::string madein="POSITIVO STILO (H14BT58) 2013-NOW";
         const std::string secure_mode="enabled";
@@ -47,7 +47,7 @@ namespace xdl{
     }
 
     //método de montagem e retorno de XDL-map
-    std::map<std::string, std::map<std::string, std::string>> file_reader::parse(){
+    xdl_data_map file_reader::parse(){
         xdl_archive.open(xdl_file_path);
 
         //Verifica se o arquivo foi aberto corretamente
@@ -72,7 +72,7 @@ namespace xdl{
         std::string _variable_group_name="";
 
         //variáel de armazenamento de dados organizados
-        std::map<std::string, std::map<std::string, std::string>> assembled_content;
+        xdl_data_map assembled_content;
 
         //variável variativa de auxílio de verificação de fechamento de grupos
         int group_entry=0;
@@ -138,7 +138,7 @@ namespace xdl{
     }
 
     //método de escritura
-    void file_writer::write(std::map<std::string, std::map<std::string, std::string>> content){
+    void file_writer::write(xdl_data_map content){
         //Abre o arquivo xdl definido no construtor da classe
         xdl_archive.open(xdl_file_path);
 
@@ -173,6 +173,15 @@ namespace xdl{
 
         //mostra que foi concluído com sucesso
         std::cout << "content writed in: " << xdl_file_path << std::endl; 
+    }
+
+    void xdl_map_printer(xdl_data_map _in_map){
+        for (const auto& group : _in_map){
+            std::cout << "Group: " << group.first << std::endl;
+            for (const auto& tag : group.second){
+                std::cout << "    " << "Key: " << tag.first << " | " << "Value: " << tag.second << std::endl;
+            }
+        }
     }
 
 } //namespace end

@@ -9,10 +9,16 @@
 /** 
  * @brief The main namespace of the XDL project
 **/
-namespace xdl {
+namespace xdl{
+
+
+    /** 
+     * @brief The alias for the type std::map<std::string, std::map<std::string, std::string>>
+    **/
+    typedef std::map<std::string, std::map<std::string, std::string>> xdl_data_map;
 
     ///@brief Nothing special
-    class info {
+    class info{
     public:
         info();
     };
@@ -22,7 +28,7 @@ namespace xdl {
      * 
      * @param path path_to_archive.xdl
     **/
-    class file_reader {
+    class file_reader{
     public:
         //variável para guardar o stream do ifstream do arquivo carregado para leitura de tamanho opicional
         std::string xdl_raw_content;
@@ -70,6 +76,12 @@ namespace xdl {
         void write(std::map<std::string, std::map<std::string, std::string>> content);
 
     };
+
+    /** 
+     * @brief  XDL map printer, put the xdl map and this function will write the data in the console
+     * @param _in_map the xdl map that you want to print
+    **/
+    void xdl_map_printer(std::map<std::string, std::map<std::string, std::string>> _in_map);
 
 }
 
