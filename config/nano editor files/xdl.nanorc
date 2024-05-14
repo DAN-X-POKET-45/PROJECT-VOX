@@ -1,0 +1,20 @@
+## Syntax highlighting for XDL files.
+
+syntax XDL "\.xdl$"
+comment "//"
+
+# The name of the tag:
+color brightwhite start="\[" end="\:"
+
+# The content of the value of the tag:
+color white start="\:" end="\]"
+
+# Tag operators:
+color green "\["
+color green "\:"
+color green "\]"
+
+# Group operators
+color orange "^.*\{"
+color cyan "\{"
+color cyan "\}"

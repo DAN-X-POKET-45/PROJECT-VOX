@@ -1,6 +1,9 @@
-#include <SDL2/SDL.h>
 #include <iostream>
+#include <voxcore/
 
-int main(){
-    SDL_Window
+int main(int argc, char argv[]){
+    voxcore
+    
+
+    return 0;
 }
