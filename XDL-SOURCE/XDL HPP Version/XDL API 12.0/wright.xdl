@@ -1,0 +1,16 @@
+cars{
+    BYD{
+        [PRICE:1.000$]
+    }
+    HAVAL{
+        [PRICE:3.500$]
+    }
+}
+trucks{
+    SCANIA{
+        [PRICE:2.350$]
+    }
+    TESLA{
+        [PRICE:5.000$]
+    }
+}

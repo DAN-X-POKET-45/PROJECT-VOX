@@ -7,12 +7,12 @@
 namespace xdl{
     info::info(){
         //declarador de dados da versão compilada atual do XDL no qual dno momento dve ser inútil dentro do arquivo
-        const std::string version="10.0";
-        const std::string description="XDL is a local databank to sotore data in single containers or archives created to store tridimensional data for game saves/imports/exports";
+        const std::string version="11.0";
+        const std::string description="XDL is a local databank to store data in single containers or archives created to store tridimensional data for game saves/imports/exports";
         const std::string arch="AMD-64";
         const std::string encode="UTF-8";
         const std::string mode="Read and Write";
-        const std::string dependencies="VOX-CORE";
+        const std::string dependencies="NOTHING SPECIAL!";
         const std::string codename="SEXY-DL";
         const std::string developer="DAN-X";
         const std::string madein="POSITIVO STILO (H14BT58) 2013-NOW";
@@ -145,7 +145,6 @@ namespace xdl{
         if (!xdl_archive.is_open()){
             std::cerr << "Failed to open XDL archive in wright mode: " << xdl_file_path << std::endl;
             //Se não puder abrir o arquivo, sai do construtor
-            return;
         }
 
         //tokens de declaração de grupos

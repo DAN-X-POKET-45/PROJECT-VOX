@@ -2,7 +2,7 @@
 #include "xdl.hpp"
 
 int main(){
-    //Extensive Definition Language example, version 10.0
+    //Extensive Definition Language example, version 10.0 | SEXYDL
     xdl::file_reader arquivo_de_teste("test.xdl");
     xdl::file_writer escrita_de_teste("wright.xdl");
 
