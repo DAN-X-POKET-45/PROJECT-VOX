@@ -1,16 +1,24 @@
-cars{
-    BYD{
-        [PRICE:1.000$]
+numbers list{
+    dec{
+        [first:1]
+        [second:2]
+        [third:3]
     }
-    HAVAL{
-        [PRICE:3.500$]
+    hex{
+        [first:0x01]
+        [second:0x02]
+        [third:0x03]
     }
 }
-trucks{
-    SCANIA{
-        [PRICE:2.350$]
+words list{
+    words1{
+        [flag:value]
+        [list:value]
+        [root:value]
     }
-    TESLA{
-        [PRICE:5.000$]
+    words2{
+        [flag:null]
+        [list:null]
+        [root:null]
     }
 }
