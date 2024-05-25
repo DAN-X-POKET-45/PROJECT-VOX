@@ -29,18 +29,22 @@ int main(){
     xdl::xdl_data_map veicles ={
         {"cars", {
             {"BYD", {
-                {"PRICE", "1.000$"}
+                {"PRICE", "1.000$"},
+                {"MAXSPEED", "150KM/h"}
             }},
             {"HAVAL", {
-                {"PRICE", "3.500$"}
+                {"PRICE", "3.500$"},
+                {"MAXSPEED", "200KM/h"}
             }}
         }},
         {"trucks", {
             {"SCANIA", {
-                {"PRICE", "2.350$"}
+                {"PRICE", "2.350$"},
+                {"MAXSPEED", "180KM/h"}
             }},
             {"TESLA", {
-                {"PRICE", "5.000$"}
+                {"PRICE", "5.000$"},
+                {"MAXSPEED", "240KM/h"}
             }}
         }}
     };
