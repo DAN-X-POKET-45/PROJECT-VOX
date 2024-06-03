@@ -1,32 +1,36 @@
 #include <iostream>
 #include <string>
-
-#include <vector>
-#include <variant>
 #include <map>
 
-struct xdlelement{
-    int element_line;
-    std::string element_name;
-    std::string element_type;
-    std::vector<xdlelement> content;
+struct file{
+    std::string file_name;
+    std::map<std::string, file> file_content;
 };
 
-// Função para imprimir a estrutura de um elemento
-void printElement(const xdlelement &element, int indent = 0){
-    std::string indentStr(indent, ' ');
-    std::cout << indentStr << "Line: " << element.element_line << "\n";
-    std::cout << indentStr << "Name: " << element.element_name << "\n";
-    std::cout << indentStr << "Type: " << element.element_type << "\n";
-    std::cout << indentStr << "Content:\n";
-    for (const auto &child : element.content){
-        printElement(child, indent + 2);
+void printelement(file input, const std::string identation =""){    
+    std::cout << identation << input.file_name << '\n';
+    for(const auto& child : input.file_content){
+        printelement(child.second, identation + "  ");
     }
 }
 
 int main(){
-    xdlelement cont = {0, "root", "índice", {{1, "seeds", "group", {}}, {2, "seeds", "não", {}}}};
-    printElement(cont);
+    file root = {
+        "root", {
+            {"imagens", {"imagens", {
+                {"fotos_da_viagem", {"fotos_da_viagem", {
+                    {"foto1.jpg", {"foto1.jpg", {}}},
+                    {"foto2.jpg", {"foto2.jpg", {}}}
+                }}},
+                {"outras", {"outras", {
+                    {"foto3.jpg", {"foto3.jpg", {}}},
+                    {"foto4.jpg", {"foto4.jpg", {}}}
+                }}}
+            }}}
+        }
+    };
+
+    printelement(root);
 
     return 0;
 }
