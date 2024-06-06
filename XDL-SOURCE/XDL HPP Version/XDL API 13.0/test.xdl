@@ -1,0 +1,27 @@
+words list{    
+    words1{
+        [root:value]
+        [flag:value]
+        [list:value]
+    }
+
+    words2{
+        [root:null]
+        [flag:null]
+        [list:null]
+    }
+}
+
+numbers list{
+    dec{
+        [first:1]
+        [second:2]
+        [third:3]
+    }
+
+    hex{
+        [first:0x01]
+        [second:0x02]
+        [third:0x03]
+    }
+}
