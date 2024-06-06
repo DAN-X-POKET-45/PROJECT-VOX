@@ -110,10 +110,7 @@ namespace xdl{
                     std::cerr << "This index-> " << _variable_index_name << "in line: " << current_line << " does not closed!!!" << std::endl;
                     xdl_archive.close();
                     std::cerr << "XDL operation with file->" << xdl_file_path << " stoped!" << '\n';
-                }
-
-                //token de declarador de valor
-                const char ASSEMBLER_TOKEN = ':';       
+                }     
 
                 int _index_name_right_pos = rawdata.find_first_of('{');
 
