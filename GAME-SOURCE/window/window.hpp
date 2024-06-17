@@ -34,6 +34,9 @@ private:
 
     //função de erro CALL-BACK obrigatória da biblioteca GLFW
     static void error_callback(int error, const char* description);
+
+    //função de detecç~ao de presionamento de teclas
+    static void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods);
 };
 
 

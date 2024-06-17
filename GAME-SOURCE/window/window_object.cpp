@@ -12,8 +12,6 @@ window::window(int width, int height, const char* title){
         std::cerr << "WINDOW ERROR! GLFW is not initialized" << '\n';
     }
 
-    glfwSetErrorCallback(error_callback);
-
     //definição de versão máxima
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
 
@@ -29,7 +27,13 @@ window::window(int width, int height, const char* title){
     //criador do obejto de janela
     glfw_window = glfwCreateWindow(width, height, title, nullptr, nullptr);
 
-    //se a criaçao do bejto de janela falhar
+    //definição da callback de tratamento de erro
+    glfwSetErrorCallback(error_callback);
+
+    //definição da callback de tratamento de dispositivos de entrada
+    glfwSetKeyCallback(glfw_window, key_callback);
+
+    //se a criaçao do objeto de janela falhar
     if (!glfw_window){
         glfwTerminate();
         std::cerr << "WINDOW ERROR! Failed to create a GLFW window" << '\n';
@@ -64,12 +68,35 @@ void window::set_size(int width, int height){
 }
 
 // Define o título da janela
-void window::set_tittle(const char* title) {
+void window::set_tittle(const char* title){
     glfwSetWindowTitle(glfw_window, title);
 }
 
+//tratamento de erros
 
 //callback de erro
-void window::error_callback(int error, const char* description) {
+void window::error_callback(int error, const char* description){
     std::cerr << "Error: (" << error << "): " << description << std::endl;
+}
+
+//tratamento de condicionais de entrada
+void window::key_callback(GLFWwindow* window, int key, int scancode, int action, int mods) {
+    if (action == GLFW_PRESS) {
+        switch(key){
+            case GLFW_KEY_W:
+                std::cout << "W key is pressed" << std::endl;
+                break;
+            case GLFW_KEY_S:
+                std::cout << "S key is pressed" << std::endl;
+                break;
+            case GLFW_KEY_A:
+                std::cout << "A key is pressed" << std::endl;
+                break;
+            case GLFW_KEY_D:
+                std::cout << "D key is pressed" << std::endl;
+                break;
+            default:
+                break;
+        }
+    }
 }
