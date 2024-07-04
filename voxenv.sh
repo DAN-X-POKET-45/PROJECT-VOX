@@ -1,7 +1,7 @@
 #Variáveis de ambiente
 export PROJECT_VOX_PATH=~/PROJECT-VOX
 export PROJECT_VOX_ENV_VERSION=1.0
-export 
+export TERM=xterm-256color
 
 #Entrada de diretórios
 cd $PROJECT_VOX_PATH

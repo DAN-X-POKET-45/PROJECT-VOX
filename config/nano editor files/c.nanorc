@@ -6,35 +6,35 @@ header "-\*-.*\<C(\+\+)?((;|[[:blank:]]).*)?-\*-"
 magic "^(C|C\+\+) (source|program)"
 comment "//"
 
-# Constants.
+# Constants
 color brightred "\<[A-Z_][0-9A-Z_]*\>"
-# Labels.
+# Labels
 color brightmagenta "^[[:blank:]]*[A-Z_a-z][0-9A-Z_a-z]*:[[:blank:]]*$"
 color normal ":[[:blank:]]*$"
 
-# Single-quoted stuff (characters, backslash escapes, hex and octal byte codes).
+# Single-quoted stuff (characters, backslash escapes, hex and octal byte codes)
 color brightwhite "'([^'\]|\\(["'\abfnrtv]|x[[:xdigit:]]{1,2}|[0-3]?[0-7]{1,2}))'"
 
-# GCC builtins.
+# GCC builtins
 color cyan "__attribute__[[:blank:]]*\(\([^)]*\)\)|__(aligned|asm|builtin|hidden|inline|packed|restrict|section|typeof|weak)__"
 
-# Strings and names of included files.
+# Strings and names of included files
 color bold,white ""([^"]|\\")*"|#[[:blank:]]*include[[:blank:]]*<[^>]+>"
 
-# Preprocessor directives.
+# Preprocessor directives
 color bold,orange start="^[[:blank:]]*#[[:blank:]]*(if(n?def)?|elif|warning|error|pragma)\>" end="(\`|[^\])$"
 color bold,orange "^[[:blank:]]*#[[:blank:]]*((define|else|endif|include(_next)?|line|undef)\>|$)"
 
-# Types and related keywords.
+# Types and related keywords
 color italic,blue "\<(auto|bool|char|const|double|enum|extern|float|inline|int|long|restrict|short|signed|sizeof|static|struct|typedef|union|unsigned|void)\>"
 color italic,blue "\<([[:lower:]][[:lower:]_]*|(u_?)?int(8|16|32|64))_t\>"
 color green "\<(_(Alignas|Alignof|Atomic|Bool|Complex|Generic|Imaginary|Noreturn|Static_assert|Thread_local))\>"
 color italic,blue "\<(class|explicit|friend|mutable|namespace|override|private|protected|public|register|template|this|typename|using|virtual|volatile)\>"
 
-# Reminders.
+# Reminders
 color brightwhite,yellow "\<(FIXME|TODO|XXX)\>"
 
-# Trailing whitespace.
+# Trailing whitespace
 color ,green "[[:space:]]+$"
 
 # Templates
@@ -50,7 +50,9 @@ color cyan "\<[a-zA-Z_][a-zA-Z0-9_]*::[a-zA-Z_][a-zA-Z0-9_]*\>"
 color yellow "\<[a-zA-Z_][a-zA-Z0-9_]*\("
 color yellow "\)"
 
-# Flow control.
+color gray "[A-Za-z0-9\)]\->"
+
+# Flow control
 color italic,brightmagenta "\<(if|else|for|while|do|switch|case|default)\>"
 color italic,brightyellow "\<(try|throw|catch|operator|new|delete)\>"
 color italic,brightmagenta "\<(break|continue|goto|return)\>"
@@ -58,6 +60,6 @@ color italic,brightmagenta "\<(break|continue|goto|return)\>"
 # Auxiliar sintaxe for conditional parentheses color
 ##color brightmagenta "\<(if|else|for|while|do|switch|case|default)\>.*\(\)"
 
-# Comments.
+# Comments
 color bold,gray "//.*"
 color bold,gray start="/\*" end="\*/"
