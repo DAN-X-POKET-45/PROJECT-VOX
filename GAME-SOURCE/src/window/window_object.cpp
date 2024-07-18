@@ -8,7 +8,7 @@
 
 window::window(int width, int height, const char* title){
     //verificador de inicializaçao da biblioteca GLFW
-    if (!glfwInit()){
+    if(!glfwInit()){
         std::cerr << "WINDOW ERROR! GLFW is not initialized" << '\n';
     }
 
