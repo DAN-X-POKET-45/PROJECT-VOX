@@ -1,6 +1,9 @@
 #Extensive Definition Language - XDL
 #PROJECT-VOX branch compiler
 
+#compier
+CXX = g++
+
 all:
 	@echo $(shell date): Compiling Extensive Direct Language [XDL] library at $(shell hostname)
 	@g++ -o xdl_program_test xdl_struct.cpp
@@ -14,3 +17,5 @@ clean:
 	@echo $(shell date): Cleaning Extensive Direct Language library compiled...
 	@rm xdl_program_test
 	@echo $(shell date): Cleaned
+
+install:
