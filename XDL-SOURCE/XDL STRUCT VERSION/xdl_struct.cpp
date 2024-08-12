@@ -125,7 +125,6 @@ public:
         }
 
         std::cout << "================================" << '\n';
-
     }
 };
 
@@ -147,6 +146,10 @@ void recursive_print(const node& node_in, int ident = 0){
     }
 
     std::cout << '\n';
+}
+
+int struct_size(const node& node_in){
+    return sizeof(node_in);
 }
 
 int main(int argc, char **argv){
@@ -171,6 +174,8 @@ int main(int argc, char **argv){
     //std::cout << oi["Toyota"]["op1"].get_standard_value() << '\n';
 
     oi.print();
+
+    std::cout << "MALLOCSIZE: " << struct_size(oi) << '\n';
 
 
 
