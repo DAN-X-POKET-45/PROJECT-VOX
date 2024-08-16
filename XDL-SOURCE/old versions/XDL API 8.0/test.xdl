@@ -1,5 +1,0 @@
-root{
-    [root:value]
-    [flag:value]
-    [list:value]
-}
