@@ -34,7 +34,14 @@ public:
         return false;
     }
 
-    
+/*===================================*/
+/*   FUNÇÕES DE CRIAÇÃO E REMOÇAO*/
+/*===================================*/
+
+
+
+
+/*===================================*/
 
     void change_value(std::string input_value){
         value = input_value;
@@ -44,8 +51,9 @@ public:
         return value;
     }
 
+
 /*===================================*/
-/*FUNÇÕES DE CONVERSÃO DE VALORES*/
+/*  FUNÇÕES DE CONVERSÃO DE VALORES*/
 /*===================================*/
 
     //Converter para int
@@ -104,7 +112,7 @@ public:
         }
 
         if(childs.size() > 0){ //se tiver filhos imprime os filhos
-        std::cout << "Node child -> " << '\n';
+            std::cout << "Node child -> " << '\n';
 
             for(const auto& sub_node : childs){
                 //declarador de tipo
@@ -126,6 +134,7 @@ public:
 
         std::cout << "================================" << '\n';
     }
+
 };
 
 
