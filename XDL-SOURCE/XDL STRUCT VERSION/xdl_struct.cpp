@@ -37,12 +37,18 @@ public:
 /*===================================*/
 /*   FUNÇÕES DE CRIAÇÃO E REMOÇAO*/
 /*===================================*/
-    add_child(const std::string& in_name, const std::string& in_value=""){
+    void add_child(const std::string& in_name, const std::string& in_value=""){
         if(name.empty()){
             std::cerr << "Error in child creating! Name is empty" << '\n';
         }
         childs.push_back(in_name, in_value);
     }
+
+    void delete_child(const std::string& in_name){
+        for(const auto&)
+    }
+
+
 
 
 
