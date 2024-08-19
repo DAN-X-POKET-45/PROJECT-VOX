@@ -15,7 +15,7 @@ public:
     //retornador de referência de nodo pelo operador[]
     node& operator[](const std::string& key_in){
         for(auto& child : childs){
-            if (child.name == key_in) {
+            if(child.name == key_in) {
                 return child;
             }
         }
@@ -24,7 +24,7 @@ public:
 
     //verifiador de existência de nodo
     bool search_node_child(const std::string& node_name){
-        for(auto& child_for_search : childs){
+        for(const auto& child_for_search : childs){
             if(child_for_search.name == node_name){
                 return true;
             }
@@ -37,23 +37,31 @@ public:
 /*===================================*/
 /*   FUNÇÕES DE CRIAÇÃO E REMOÇAO*/
 /*===================================*/
+
+    //Cridor de filhos com valor
     void add_child(const std::string& in_name, const std::string& in_value=""){
         if(name.empty()){
             std::cerr << "Error in child creating! Name is empty" << '\n';
         }
-        childs.push_back(in_name, in_value);
+        childs.push_back(node(in_name, in_value));
     }
 
+    //Destruídor de filhos
     void delete_child(const std::string& in_name){
-        for(const auto&)
+        size_t index = 1;
+        for(const auto& child_for_search : childs){
+            if(child_for_search.name == in_name){
+                childs.erase(childs.begin() + index);
+            }else{
+                index++;
+            }
+        }
     }
-
-
-
 
 
 /*===================================*/
 
+    //Troca de valor
     void change_value(std::string input_value){
         value = input_value;
     }
@@ -100,6 +108,7 @@ public:
         }
     }
 
+    //Verificador e conversor de valor para booleano
     bool get_boolean_value(){
         if(value == "TRUE" || "True" || "true"){
             return true;
@@ -112,6 +121,7 @@ public:
 
 /*===================================*/
 
+    //Membro impressor
     void print(){
         std::cout << "==============" << "INFO" << "==============" << '\n';
         std::cout << "Node name  -> " << name << '\n'; //Impressor de nome
@@ -148,7 +158,7 @@ public:
 
 };
 
-
+//Impressão recursiva
 void recursive_print(const node& node_in, int ident = 0){
     //impressão do nome do nodo
     std::cout << std::string(ident * 2, ' ') << "NODE NAME: " << node_in.name << '\n';
@@ -168,6 +178,7 @@ void recursive_print(const node& node_in, int ident = 0){
     std::cout << '\n';
 }
 
+//Cálculo básico de tamanho do struct
 int struct_size(const node& node_in){
     return sizeof(node_in);
 }
@@ -193,9 +204,30 @@ int main(int argc, char **argv){
 
     //std::cout << oi["Toyota"]["op1"].get_standard_value() << '\n';
 
-    oi.print();
+    //oi.print();
 
-    std::cout << "MALLOCSIZE: " << struct_size(oi) << '\n';
+    //std::cout << "MALLOCSIZE: " << struct_size(oi) << '\n';
+
+    node ola = {"root", "", {
+                {"BYD", "feio"},
+                {"Toyota", "", {
+                    {"op1", "não"},
+                    {"op2", "sim"}
+                    }
+                }
+            
+                }
+            }; //Final da inicialização do objeto
+
+    recursive_print(ola);
+
+    ola.add_child("VOLKS", "razoável");
+
+    recursive_print(ola);
+
+    ola.delete_child("VOLKS");
+
+    recursive_print(ola);
 
 
 
