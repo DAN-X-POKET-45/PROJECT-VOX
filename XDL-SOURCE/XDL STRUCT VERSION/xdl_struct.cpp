@@ -35,7 +35,7 @@ public:
     }
 
 /*===================================*/
-/*   FUNÇÕES DE CRIAÇÃO E REMOÇAO*/
+/*   FUNÇÕES DE CRIAÇÃO E REMOÇAO    */
 /*===================================*/
 
     //Cridor de filhos com valor
@@ -72,7 +72,7 @@ public:
 
 
 /*===================================*/
-/*  FUNÇÕES DE CONVERSÃO DE VALORES*/
+/*  FUNÇÕES DE CONVERSÃO DE VALORES  */
 /*===================================*/
 
     //Converter para int
@@ -120,6 +120,7 @@ public:
     }
 
 /*===================================*/
+
 
     //Membro impressor
     void print(){
