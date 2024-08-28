@@ -5,6 +5,7 @@
 
 #include <initializer_list>
 #include <iostream>
+#include <fstream>
 #include <string>
 #include <vector>
 
@@ -65,6 +66,32 @@ public:
     void print();
 
 };
+
+
+
+/*===================================*/
+/*             PARSEADOR             */
+/*===================================*/
+
+class file_reader{
+public:
+    //variável para guardar o stream do ifstream do arquivo carregado
+    std::string xdl_raw_content;
+    //Objeto de entrada do arquivo xdl a partir da ifstream
+    std::ifstream xdl_archive;
+    //variável global de acesso ao caminho do arquivo xdl definido no construtor
+    std::string xdl_file_path;
+
+    //construtor
+    file_reader(std::string& path);
+
+    //parseador
+    node parse();
+}
+
+/*===================================*/
+
+
 
 void recursive_print(const node& node_in, int ident = 0);
 
