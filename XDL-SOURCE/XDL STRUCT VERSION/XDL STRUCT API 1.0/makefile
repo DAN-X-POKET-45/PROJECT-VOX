@@ -6,7 +6,7 @@ CXX = g++
 
 all:
 	@echo $(shell date): Compiling Extensive Direct Language [XDL] library at $(shell hostname)
-	@g++ -o xdl_program_test xdl_struct.cpp
+	@g++ -o xdl_program_test main.cpp xdl_dynamic_object_iplementation.cpp
 	@echo Extensive Direct Language library [XDL] lib compiled!
 run:
 	@echo $(shell date): Runing Extensive Direct Language [XDL] library at $(shell hostname)
