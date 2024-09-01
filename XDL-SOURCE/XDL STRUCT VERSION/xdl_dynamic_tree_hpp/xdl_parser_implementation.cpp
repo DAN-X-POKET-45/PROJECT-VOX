@@ -35,7 +35,7 @@ file_reader::parse(){
 
     //analisador de linhas carregadas dentro da string rawdata
     while(std::getline(xdl_archive, rawdata)){
-
+        
     }
 
 

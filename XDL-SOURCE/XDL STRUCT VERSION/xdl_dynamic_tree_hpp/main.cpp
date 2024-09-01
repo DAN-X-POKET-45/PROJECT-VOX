@@ -40,6 +40,10 @@ int main(int argc, char **argv){
                 }
             }; //Final da inicialização do objeto
 
+/*
+===================================
+  TESTE DE MANIPULAÇÃO DE INTENS
+===================================
     recursive_print(ola);
 
     ola.add_child("VOLKS", "razoável");
@@ -49,7 +53,7 @@ int main(int argc, char **argv){
     ola.delete_child("VOLKS");
 
     recursive_print(ola);
-
+*/
 
 
     return 0;
