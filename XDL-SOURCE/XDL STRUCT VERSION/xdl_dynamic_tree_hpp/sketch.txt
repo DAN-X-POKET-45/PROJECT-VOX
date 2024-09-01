@@ -1,0 +1,23 @@
+Sistema de encapsulamento herdado do XML
+
+<root>
+    <string> Hello </string>
+    <int> 2000 </int>
+    <bool> False </bool>
+</root>
+
+Sistema de encapsulamento herdado do JSON
+
+root{
+    [string:hello]
+    [int:2000]
+    [bool:False]
+}
+
+Sistema de implementação detalhada herdada do CPYTHON
+
+group(root){
+    tag(string=Hello)
+    tag(int=2000)
+    tag(bool=False)
+}
