@@ -17,7 +17,7 @@ root{
 Sistema de implementação detalhada herdada do CPYTHON
 
 group(root){
-    tag(string=Hello)
-    tag(int=2000)
-    tag(bool=False)
+    obj(string=Hello)
+    obj(int=2000)
+    obj(bool=False)
 }
