@@ -5,7 +5,7 @@ Sistema de encapsulamento herdado do XML
     <int> 2000 </int>
     <bool> False </bool>
 </root>
-
+ 
 Sistema de encapsulamento herdado do JSON
 
 root{

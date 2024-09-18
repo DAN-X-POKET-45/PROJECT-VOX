@@ -5,7 +5,7 @@
 #include "xdl.hpp"
 
 int main(int argc, char **argv){
-    node oi={"root", "", {
+    /*node oi={"root", "", {
                 {"BYD", "feio"},
                 {"HAVAL", "feio"},
                 {"Fiat", "bonitinhos"},
@@ -54,6 +54,9 @@ int main(int argc, char **argv){
 
     recursive_print(ola);
 */
+
+    file_reader oi("test.xdl");
+    oi.parse();
 
 
     return 0;

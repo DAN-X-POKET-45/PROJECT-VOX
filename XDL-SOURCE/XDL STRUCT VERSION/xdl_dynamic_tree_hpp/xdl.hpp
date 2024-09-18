@@ -83,7 +83,7 @@ public:
     std::string xdl_file_path;
 
     //construtor
-    file_reader(std::string& path);
+    file_reader(std::string path);
 
     //parseador
     node parse();
