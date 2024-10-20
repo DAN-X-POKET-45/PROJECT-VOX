@@ -27,7 +27,7 @@ int main(int argc, char **argv){
 
     //oi.print();
 
-    //std::cout << "MALLOCSIZE: " << struct_size(oi) << '\n';
+    //std::cout << "MALLOCSIZE: " << node_size(oi) << '\n';
 
     node ola = {"root", "", {
                 {"BYD", "feio"},

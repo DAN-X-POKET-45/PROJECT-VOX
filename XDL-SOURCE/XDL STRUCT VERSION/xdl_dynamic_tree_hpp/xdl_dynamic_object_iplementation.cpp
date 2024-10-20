@@ -184,7 +184,7 @@ void recursive_print(const node& node_in, int ident){
     std::cout << '\n';
 }
 
-//Cálculo básico de tamanho do struct
-int struct_size(const node& node_in){
+//Cálculo básico de tamanho do objeto nodo
+int node_size(const node& node_in){
     return sizeof(node_in);
 }

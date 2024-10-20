@@ -110,7 +110,7 @@ node file_reader::parse(){
 
 
 
-        //verifica se grupos estão fechados
+        //verifica se grupos de linhas anteriores são fechados na linha atual
         if(rawdata.find('}')!=std::string::npos){
             group_lock++;
         }

@@ -9,7 +9,7 @@
 #include <string>
 #include <vector>
 
-struct node{
+class node{
 public:
     std::string name;         //tag
     std::string value;        //valor
@@ -95,7 +95,7 @@ public:
 
 void recursive_print(const node& node_in, int ident = 0);
 
-int struct_size(const node& node_in);
+int node_size(const node& node_in);
 
 
 
