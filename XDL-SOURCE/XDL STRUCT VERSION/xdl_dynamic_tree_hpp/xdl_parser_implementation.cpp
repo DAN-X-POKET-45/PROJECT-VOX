@@ -4,11 +4,14 @@
 #include <vector>
 #include "xdl.hpp"
 
+//construtor
 file_reader::file_reader(std::string path){
     xdl_file_path = path;
 }
 
+//parseador
 node file_reader::parse(){
+    //caminho pro arquivo
     xdl_archive.open(xdl_file_path);
 
     //Verifica se o arquivo foi aberto corretamente
@@ -47,6 +50,9 @@ node file_reader::parse(){
     //tokens de declaração de chaves
     const char LEFT_KEY_TOKEN = '[';
     const char RIGHT_KEY_TOKEN = ']';
+
+    //tokens de atribuição de valores
+    const char VALOR_ASSEMBLER = ':';
 
     /*===================================*/
 
@@ -103,8 +109,11 @@ node file_reader::parse(){
             //localiza e armazena a posição da primeira aparição do LEFT_KEY_TOKEN [
             int _tag_name_left_pos = rawdata.find_first_of(LEFT_KEY_TOKEN); //armazena na variável de posição de inicialização de uma tag
 
-            //localiza e armazena a posição da primeira aparição do LEFT_KEY_TOKEN [
+            //localiza e armazena a posição da primeira aparição do RIGHT_KEY_TOKEN ]
             int _tag_name_right_pos = rawdata.find_first_of(RIGHT_KEY_TOKEN); //armazena na variável de posição de inicialização de uma tag
+
+            //localiza e armazena a posição da primeira aparição do atribuidor de valor da tag :
+            int _two_point_pos = rawdata.find_first_of(':'); //armazena na variável de posição de inicialização de um valor para uma tag
             
         }
 
@@ -131,5 +140,11 @@ node file_reader::parse(){
 
     /*===================================*/
 
+
+}
+
+//montador privado para cada linha do objeto node
+node file_reader::node_object_assembler(const node& node_in){
+    
 
 }

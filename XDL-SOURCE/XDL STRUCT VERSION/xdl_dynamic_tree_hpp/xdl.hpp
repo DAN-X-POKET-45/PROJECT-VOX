@@ -25,7 +25,7 @@ public:
     bool search_node_child(const std::string& node_name);
 
 /*===================================*/
-/*   FUNÇÕES DE CRIAÇÃO E REMOÇAO    */
+/*   FUNÇÕES DE CRIAÇÃO E REMOÇÃO    */
 /*===================================*/
 
     //Cridor de filhos com valor
@@ -87,6 +87,8 @@ public:
 
     //parseador
     node parse();
+private:
+    node node_object_assembler(const node& node_in);
 };
 
 /*===================================*/
