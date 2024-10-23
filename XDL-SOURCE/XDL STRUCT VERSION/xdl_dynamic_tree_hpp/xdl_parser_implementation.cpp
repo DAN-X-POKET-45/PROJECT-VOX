@@ -134,9 +134,11 @@ node file_reader::parse(){
         std::cerr << "XDL operation with file->" << xdl_file_path << " stoped by error in file, has many open groups" << '\n';
     }
 
-    //retorno padrão de teste
+    node_object_assembler(); //terminar aqui coma lógica do parser melhorada
+
+    /*retorno padrão de teste
     node oi={"oi", "oi"};
-    return oi;
+    return oi;*/
 
     /*===================================*/
 
@@ -144,7 +146,15 @@ node file_reader::parse(){
 }
 
 //montador privado para cada linha do objeto node
-node file_reader::node_object_assembler(const node& node_in){
-    
-
+node file_reader::node_object_assembler(const std::string& name = "", const std::string& valor = "", node& node_in = {"",""}){
+    //verifica se o valor a ser adicionado é uma TAG e VALOR ou um CHILD
+    if(!node_in.search_node_child(name)){ //se não existir um nó com o mesmo nome já existente
+        if(valor.empty()){ //verifique se valor está vazio
+            node_in.add_child(name, ""); //crie o child
+        }else{ //se valor não estiver vazio
+            node_in.add_child(name, valor); //adicione uma tag com o o nome e o valor dado
+        }
+    }else{ //se já exisitr um nó com o nome
+        node_object_assembler(name, value, node_in[name]); //tente editar coisas dentro do nó
+    }
 }
