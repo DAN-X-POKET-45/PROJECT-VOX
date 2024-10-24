@@ -23,6 +23,16 @@ node file_reader::parse(){
     }
 
     /*===================================*/
+    /*         OBJETO DE RETORNO         */
+    /*===================================*/
+
+    node main_object = {"",""};
+
+    /*===================================*/
+
+
+
+    /*===================================*/
     /*       VARIÁVEIS VARIATIVAS        */
     /*===================================*/
 
@@ -114,6 +124,12 @@ node file_reader::parse(){
 
             //localiza e armazena a posição da primeira aparição do atribuidor de valor da tag :
             int _two_point_pos = rawdata.find_first_of(':'); //armazena na variável de posição de inicialização de um valor para uma tag
+
+            //atribuidor de valor do nome da tag
+            _variable_tag_name = rawdata.substr(_tag_name_left_pos, (_two_point_pos - _tag_name_left_pos));
+
+            //atribuídor de valor do valor da tag
+            _variable_tag_valor = rawdata.substr(_two_point_pos, (_tag_name_right_pos - _two_point_pos));
             
         }
 
@@ -126,6 +142,12 @@ node file_reader::parse(){
 
         //aumenta o indicador de linhas
         current_line++;
+
+        if(_variable_tag_valor.empty()){
+            node_object_assembler(_variable_group_name, "", main_object);
+        }else{
+            node_object_assembler(_variable_tag_name, _variable_tag_valor, main_object);
+        }
     }
 
     //se encontrar um grupo aberto a partir da variável group_lock o parseamento é parado
@@ -134,7 +156,9 @@ node file_reader::parse(){
         std::cerr << "XDL operation with file->" << xdl_file_path << " stoped by error in file, has many open groups" << '\n';
     }
 
-    node_object_assembler(); //terminar aqui coma lógica do parser melhorada
+
+
+    //terminar aqui com a lógica do parser melhorada
 
     /*retorno padrão de teste
     node oi={"oi", "oi"};

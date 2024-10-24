@@ -88,7 +88,7 @@ public:
     //parseador
     node parse();
 private:
-    node node_object_assembler(const node& node_in);
+    node node_object_assembler(const std::string& name = "", const std::string& valor = "", node& node_in = {"", ""});
 };
 
 /*===================================*/
