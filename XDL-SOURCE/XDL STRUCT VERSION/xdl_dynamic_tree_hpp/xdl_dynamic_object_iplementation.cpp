@@ -14,7 +14,7 @@ node& node::operator[](const std::string& key_in){
     throw std::out_of_range("Child not found");
 }
 
-//verifiador de existência de nodo
+//verificador de existência de nodo
 bool node::search_node_child(const std::string& node_name){
     for(const auto& child_for_search : childs){
         if(child_for_search.name == node_name){
@@ -22,7 +22,7 @@ bool node::search_node_child(const std::string& node_name){
         }
     }
 
-    std::cerr << "Node not found! " << '\n' << " Failed to found this node -> " << node_name <<  '\n';
+    std::cerr << "Node not found! Failed to found this node -> " << node_name <<  '\n';
     return false;
 }
 

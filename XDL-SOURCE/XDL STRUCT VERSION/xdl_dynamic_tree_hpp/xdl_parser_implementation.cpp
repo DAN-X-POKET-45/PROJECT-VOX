@@ -22,14 +22,6 @@ node file_reader::parse(){
         std::cerr << "XDL operation with file->" << xdl_file_path << " stoped!" << '\n';
     }
 
-    /*===================================*/
-    /*         OBJETO DE RETORNO         */
-    /*===================================*/
-
-    node main_object = {"",""};
-
-    /*===================================*/
-
 
 
     /*===================================*/
@@ -93,6 +85,12 @@ node file_reader::parse(){
 
     //analisador de linhas carregadas dentro da string rawdata
     while(std::getline(xdl_archive, rawdata)){
+
+        //resetadores
+        std::string _variable_tag_name="";
+        std::string _variable_tag_valor="";
+        std::string _variable_group_name="";
+
         //verifica se é um grupo
         if(rawdata.find('{')!=std::string::npos && rawdata.find(':')==std::string::npos){
             //alterna a variável group_lock para aberta
@@ -106,12 +104,6 @@ node file_reader::parse(){
 
             //organizador de índices
             _variable_group_name = rawdata.substr(_group_name_left_pos, (_group_name_right_pos - _group_name_left_pos));
-
-            //teste de reconehciemnto de grupos
-            std::cout << _variable_group_name << '\n';
-
-
-
         }
         
         //verifica se é uma tag
@@ -126,11 +118,10 @@ node file_reader::parse(){
             int _two_point_pos = rawdata.find_first_of(':'); //armazena na variável de posição de inicialização de um valor para uma tag
 
             //atribuidor de valor do nome da tag
-            _variable_tag_name = rawdata.substr(_tag_name_left_pos, (_two_point_pos - _tag_name_left_pos));
+            _variable_tag_name = rawdata.substr(_tag_name_left_pos + 1, (_two_point_pos - 1 - _tag_name_left_pos));
 
             //atribuídor de valor do valor da tag
-            _variable_tag_valor = rawdata.substr(_two_point_pos, (_tag_name_right_pos - _two_point_pos));
-            
+            _variable_tag_valor = rawdata.substr(_two_point_pos + 1, (_tag_name_right_pos - _two_point_pos - 1));
         }
 
 
@@ -143,7 +134,8 @@ node file_reader::parse(){
         //aumenta o indicador de linhas
         current_line++;
 
-        if(_variable_tag_valor.empty()){
+        //insere os dados analisados e separados dentro do main_object
+        if(_variable_tag_valor.empty() && _variable_tag_name.empty()){
             node_object_assembler(_variable_group_name, "", main_object);
         }else{
             node_object_assembler(_variable_tag_name, _variable_tag_valor, main_object);
@@ -157,8 +149,8 @@ node file_reader::parse(){
     }
 
 
-
-    //terminar aqui com a lógica do parser melhorada
+    //ao terminar de ler todas as linhas retorna o objeto principal
+    return main_object;
 
     /*retorno padrão de teste
     node oi={"oi", "oi"};
@@ -170,15 +162,15 @@ node file_reader::parse(){
 }
 
 //montador privado para cada linha do objeto node
-node file_reader::node_object_assembler(const std::string& name = "", const std::string& valor = "", node& node_in = {"",""}){
+void file_reader::node_object_assembler(const std::string& name, const std::string& valor, node& node_in){
     //verifica se o valor a ser adicionado é uma TAG e VALOR ou um CHILD
     if(!node_in.search_node_child(name)){ //se não existir um nó com o mesmo nome já existente
         if(valor.empty()){ //verifique se valor está vazio
-            node_in.add_child(name, ""); //crie o child
+            node_in.add_child(name, ""); //crie um child
         }else{ //se valor não estiver vazio
-            node_in.add_child(name, valor); //adicione uma tag com o o nome e o valor dado
+            node_in.add_child(name, valor); //adicione uma tag com o nome e o valor dado
         }
     }else{ //se já exisitr um nó com o nome
-        node_object_assembler(name, value, node_in[name]); //tente editar coisas dentro do nó
+        node_object_assembler(name, valor, node_in[name]); //tente editar coisas dentro do nó
     }
 }

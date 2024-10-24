@@ -88,7 +88,16 @@ public:
     //parseador
     node parse();
 private:
-    node node_object_assembler(const std::string& name = "", const std::string& valor = "", node& node_in = {"", ""});
+    void node_object_assembler(const std::string& name, const std::string& valor, node& node_in);
+
+    /*===================================*/
+    /*         OBJETO DE RETORNO         */
+    /*===================================*/
+
+    node main_object = {"root",""};
+
+    /*===================================*/
+
 };
 
 /*===================================*/

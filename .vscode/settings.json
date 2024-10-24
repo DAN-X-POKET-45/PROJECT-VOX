@@ -56,7 +56,14 @@
         "typeinfo": "cpp",
         "map": "cpp",
         "cinttypes": "cpp",
-        "variant": "cpp"
+        "variant": "cpp",
+        "cstring": "cpp",
+        "condition_variable": "cpp",
+        "set": "cpp",
+        "mutex": "cpp",
+        "semaphore": "cpp",
+        "stop_token": "cpp",
+        "thread": "cpp"
     },
     "C_Cpp.errorSquiggles": "disabled"
 }

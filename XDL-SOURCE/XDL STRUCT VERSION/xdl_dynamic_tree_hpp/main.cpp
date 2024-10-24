@@ -56,7 +56,11 @@ int main(int argc, char **argv){
 */
 
     file_reader oi("test.xdl");
-    oi.parse();
+    node test = oi.parse();
+
+    std::cout << "-----------------" << '\n';
+
+    recursive_print(test);
 
 
     return 0;
