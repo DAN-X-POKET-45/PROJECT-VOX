@@ -1,9 +1,9 @@
 Sistema de encapsulamento herdado do XML
 
 <root>
-    <string> Hello </string>
-    <int> 2000 </int>
-    <bool> False </bool>
+    <string: oi=1> Hello </string>
+    <int: oi=1> 2000 </int>
+    <bool: oi=1> False </bool>
 </root>
  
 Sistema de encapsulamento herdado do JSON

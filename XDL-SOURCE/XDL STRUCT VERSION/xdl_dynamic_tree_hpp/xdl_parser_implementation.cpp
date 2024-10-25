@@ -28,6 +28,9 @@ node file_reader::parse(){
     /*       VARIÁVEIS VARIATIVAS        */
     /*===================================*/
 
+    //variável variativa do valor da identação
+    size_t _variable_identation = 0;
+
     //variável variativa do nome de uma tag
     std::string _variable_tag_name="";
 
@@ -87,9 +90,16 @@ node file_reader::parse(){
     while(std::getline(xdl_archive, rawdata)){
 
         //resetadores
-        std::string _variable_tag_name="";
-        std::string _variable_tag_valor="";
-        std::string _variable_group_name="";
+        _variable_identation=std::string::npos;
+        _variable_tag_name="";
+        _variable_tag_valor="";
+        _variable_group_name="";
+
+        //identifica a identação da linha atual
+        if(rawdata.find_first_not_of(" ")!=std::string::npos){
+            _variable_identation = rawdata.find_first_not_of(" ");
+            std::cout << "identação: " << _variable_identation << '\n';
+        }
 
         //verifica se é um grupo
         if(rawdata.find('{')!=std::string::npos && rawdata.find(':')==std::string::npos){
@@ -137,7 +147,7 @@ node file_reader::parse(){
         //insere os dados analisados e separados dentro do main_object
         if(_variable_tag_valor.empty() && _variable_tag_name.empty()){
             node_object_assembler(_variable_group_name, "", main_object);
-        }else{
+        }else if(_variable_group_name.empty()){
             node_object_assembler(_variable_tag_name, _variable_tag_valor, main_object);
         }
     }
@@ -145,7 +155,7 @@ node file_reader::parse(){
     //se encontrar um grupo aberto a partir da variável group_lock o parseamento é parado
     if(group_lock<0){
         xdl_archive.close(); //<--fecha o arquivo e libera o stream de texto do arquivo da memória
-        std::cerr << "XDL operation with file->" << xdl_file_path << " stoped by error in file, has many open groups" << '\n';
+        std::cerr << "XDL operation with file-> " << xdl_file_path << " stoped by error in file, has many open groups" << '\n';
     }
 
 
@@ -163,6 +173,11 @@ node file_reader::parse(){
 
 //montador privado para cada linha do objeto node
 void file_reader::node_object_assembler(const std::string& name, const std::string& valor, node& node_in){
+
+}
+
+/*montador privado para cada linha do objeto node
+void file_reader::node_object_assembler(const std::string& name, const std::string& valor, node& node_in){
     //verifica se o valor a ser adicionado é uma TAG e VALOR ou um CHILD
     if(!node_in.search_node_child(name)){ //se não existir um nó com o mesmo nome já existente
         if(valor.empty()){ //verifique se valor está vazio
@@ -173,4 +188,4 @@ void file_reader::node_object_assembler(const std::string& name, const std::stri
     }else{ //se já exisitr um nó com o nome
         node_object_assembler(name, valor, node_in[name]); //tente editar coisas dentro do nó
     }
-}
+}*/
