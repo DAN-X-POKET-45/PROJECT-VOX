@@ -96,9 +96,8 @@ node file_reader::parse(){
         _variable_group_name="";
 
         //identifica a identação da linha atual
-        if(rawdata.find_first_not_of(" ")!=std::string::npos){
+        if(rawdata.find_first_not_of(' ')!=std::string::npos){
             _variable_identation = rawdata.find_first_not_of(" ");
-            std::cout << "identação: " << _variable_identation << '\n';
         }
 
         //verifica se é um grupo
@@ -146,9 +145,9 @@ node file_reader::parse(){
 
         //insere os dados analisados e separados dentro do main_object
         if(_variable_tag_valor.empty() && _variable_tag_name.empty()){
-            node_object_assembler(_variable_group_name, "", main_object);
+            node_object_assembler(_variable_group_name, "", (_variable_identation/4));
         }else if(_variable_group_name.empty()){
-            node_object_assembler(_variable_tag_name, _variable_tag_valor, main_object);
+            node_object_assembler(_variable_tag_name, _variable_tag_valor, (_variable_identation/4));
         }
     }
 
@@ -172,8 +171,12 @@ node file_reader::parse(){
 }
 
 //montador privado para cada linha do objeto node
-void file_reader::node_object_assembler(const std::string& name, const std::string& valor, node& node_in){
-
+void file_reader::node_object_assembler(const std::string& name, const std::string& valor, const int& ident){
+    if(ident!=std::string::npos){
+        std::cout << std::string(ident * 2, ' ') << name << " : " << valor << '\n';
+    }else{
+        std::cout << "LINHA VAZIA" << '\n';
+    }
 }
 
 /*montador privado para cada linha do objeto node
