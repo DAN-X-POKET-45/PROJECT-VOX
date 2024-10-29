@@ -62,6 +62,22 @@ int main(int argc, char **argv){
 
     recursive_print(test);
 
+    std::cout << "-----------------" << '\n';
+
+    /*node test2 = {"root", "", {
+                {"BYD", "feio"},
+                {"Volks", "lindo"},
+                {"Toyota", "", {
+                    {"op1", "não"},
+                    {"op2", "sim"}
+                    }
+                }            
+            }
+    }; //Final da inicialização do objeto*/
+
+    
+    /*método de acesso por índice de filhos
+    std::cout << test2.childs[0].get_standard_value() << '\n';*/
 
     return 0;
 }

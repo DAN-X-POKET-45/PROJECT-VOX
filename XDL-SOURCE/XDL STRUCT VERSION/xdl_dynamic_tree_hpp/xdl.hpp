@@ -18,8 +18,11 @@ public:
     //construtor para inicializar o nó com nome, valor e filhos
     node(const std::string& name_in, const std::string& value_in, std::initializer_list<node> child_in = {}) : name(name_in), value(value_in), childs(child_in) {}
 
-    //retornador de referência de nodo pelo operador[]
+    //retornador de referência de nodo pelo operador[] a partir do nome
     node& operator[](const std::string& key_in);
+
+    //retornador de referência de nodo pelo operador[] a partir do índice
+    node& operator[](const int& key_index);
 
     //verifiador de existência de nodo
     bool search_node_child(const std::string& node_name);

@@ -172,12 +172,34 @@ node file_reader::parse(){
 
 //montador privado para cada linha do objeto node
 void file_reader::node_object_assembler(const std::string& name, const std::string& valor, const int& ident){
+    int pos = 0;
+    node& current_vector = main_object;
+
+/*const auto& current_vector : main_object.childs*/
+
+    if(ident > 0){
+        while(pos < ident){
+            current_vector = current_vector[0];
+            pos++;
+        }
+    }else{
+        main_object.add_child(name, valor);
+    }
+
+    current_vector.add_child(name, valor);
+
+    
+
+}
+
+/*testador de texto de montagem
+void file_reader::node_object_assembler(const std::string& name, const std::string& valor, const int& ident){
     if(ident!=std::string::npos){
         std::cout << std::string(ident * 2, ' ') << name << " : " << valor << '\n';
     }else{
         std::cout << "LINHA VAZIA" << '\n';
     }
-}
+}*/
 
 /*montador privado para cada linha do objeto node
 void file_reader::node_object_assembler(const std::string& name, const std::string& valor, node& node_in){

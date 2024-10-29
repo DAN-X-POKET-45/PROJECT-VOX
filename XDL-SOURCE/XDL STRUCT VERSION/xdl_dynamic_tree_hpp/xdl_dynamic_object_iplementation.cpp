@@ -4,7 +4,7 @@
 #include <vector>
 #include "xdl.hpp"
 
-//retornador de referência de nodo pelo operador[]
+//retornador de referência de nodo pelo operador[] a partir do nome
 node& node::operator[](const std::string& key_in){
     for(auto& child : childs){
         if(child.name == key_in) {
@@ -12,6 +12,15 @@ node& node::operator[](const std::string& key_in){
         }
     }
     throw std::out_of_range("Child not found");
+}
+
+//retornador de referência de nodo pelo operador[] a partir do índice
+node& node::operator[](const int& key_index){
+    if(key_index < 0 || key_index > childs.size()){
+        throw std::out_of_range("key_index does not match the object's vector");
+    }else{
+        return childs[key_index];
+    }
 }
 
 //verificador de existência de nodo
