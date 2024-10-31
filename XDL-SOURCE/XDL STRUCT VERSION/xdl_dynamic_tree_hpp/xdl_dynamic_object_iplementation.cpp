@@ -17,7 +17,7 @@ node& node::operator[](const std::string& key_in){
 //retornador de referência de nodo pelo operador[] a partir do índice
 node& node::operator[](const int& key_index){
     if(key_index < 0 || key_index > childs.size()){
-        throw std::out_of_range("key_index does not match the object's vector");
+        throw std::out_of_range("key_index does not match the object vector");
     }else{
         return childs[key_index];
     }

@@ -143,11 +143,14 @@ node file_reader::parse(){
         //aumenta o indicador de linhas
         current_line++;
 
-        //insere os dados analisados e separados dentro do main_object
-        if(_variable_tag_valor.empty() && _variable_tag_name.empty()){
-            node_object_assembler(_variable_group_name, "", (_variable_identation/4));
-        }else if(_variable_group_name.empty()){
-            node_object_assembler(_variable_tag_name, _variable_tag_valor, (_variable_identation/4));
+        //verifica se é uma linha vazia ou uma linha de caractére de fechamento para evitar a inserção de algo
+        if(rawdata.find('}')==std::string::npos){
+            //insere os dados analisados e separados dentro do main_object
+            if(_variable_tag_valor.empty() && _variable_tag_name.empty()){
+                node_object_assembler(_variable_group_name, "", (_variable_identation/4));
+            }else if(_variable_group_name.empty()){
+                node_object_assembler(_variable_tag_name, _variable_tag_valor, (_variable_identation/4));
+            }
         }
     }
 
@@ -172,22 +175,29 @@ node file_reader::parse(){
 
 //montador privado para cada linha do objeto node
 void file_reader::node_object_assembler(const std::string& name, const std::string& valor, const int& ident){
-    int pos = 0;
-    node& current_vector = main_object;
+    size_t pos = 0;
+    node* current_vector = &main_object;
 
 /*const auto& current_vector : main_object.childs*/
 
+    std::cout << ident << '\n';
+
     if(ident > 0){
+        std::cout << "entrando na camada: " << ident << '\n';
         while(pos < ident){
-            current_vector = current_vector[0];
+            std::cout << "atualmente na camada: " << pos << '\n';
+            current_vector = &current_vector->childs[0];
+            std::cout << "entrada no nodo: " << current_vector->name << '\n';
             pos++;
         }
-    }else{
+
+        std::cout << "adicioanando na camada: " << pos << " dentro do nodo: " << current_vector->name << '\n';
+        current_vector->add_child(name, valor);
+
+    }else if(ident == 0){
+        std::cout << "está vazio, adicioanando na raíz" << '\n';
         main_object.add_child(name, valor);
     }
-
-    current_vector.add_child(name, valor);
-
     
 
 }
