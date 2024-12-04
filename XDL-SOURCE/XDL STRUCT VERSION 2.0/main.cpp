@@ -66,8 +66,6 @@ int main(int argc, char **argv){
 
     std::cout << "-----------------" << '\n';
 
-
-
     file_writer tchau("write.xdl");
     tchau.write(oi.parse());
 
