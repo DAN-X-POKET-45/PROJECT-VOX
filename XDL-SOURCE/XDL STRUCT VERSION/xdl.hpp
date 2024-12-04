@@ -78,7 +78,7 @@ public:
 
 class file_reader{
 public:
-    //variável para guardar o stream do ifstream do arquivo carregado
+    //variável para guardar o stream bruto do ifstream do arquivo carregado
     std::string xdl_raw_content;
     //Objeto de entrada do arquivo xdl a partir da ifstream
     std::ifstream xdl_archive;
@@ -100,6 +100,33 @@ private:
     node main_object = {"root",""};
 
     /*===================================*/
+
+};
+
+/*===================================*/
+
+
+
+/*===================================*/
+/*         IMPRESSOR EXTERNO         */
+/*===================================*/
+
+class file_writer{
+public:
+    //objeto de entrada do arquivo xdl a partir da ofstream para a gravação
+    std::ofstream xdl_archive;
+    //variável global do caminho do arquivo xdl definido no construtor
+    std::string xdl_file_path;
+
+    //construtor
+    file_writer(const std::string path);
+
+    //impressor
+    void write(const node& content);
+
+private:
+    //Impressão recursiva em arquivo externo
+    void archive_printer(const node& node_in, int ident);
 
 };
 

@@ -55,27 +55,22 @@ int main(int argc, char **argv){
     recursive_print(ola);
 */
 
+
+
     file_reader oi("test.xdl");
-    node test = oi.parse();
+    //node test = oi.parse();
 
     std::cout << "-----------------" << '\n';
 
-    recursive_print(test);
+    //recursive_print(test);
 
     std::cout << "-----------------" << '\n';
 
-    /*node test2 = {"root", "", {
-                {"BYD", "feio"},
-                {"Volks", "lindo"},
-                {"Toyota", "", {
-                    {"op1", "não"},
-                    {"op2", "sim"}
-                    }
-                }            
-            }
-    }; //Final da inicialização do objeto*/
 
-    
+
+    file_writer tchau("write.xdl");
+    tchau.write(oi.parse());
+
     /*método de acesso por índice de filhos
     std::cout << test2.childs[0].get_standard_value() << '\n';*/
 
