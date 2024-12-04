@@ -180,47 +180,32 @@ void file_reader::node_object_assembler(const std::string& name, const std::stri
 
 /*const auto& current_vector : main_object.childs*/
 
-    std::cout << ident << '\n';
 
+    //flag de aviso da identação a ser usada no item a ser adicionado
+    std::cout << "identação da chamada atual: " << ident << '\n';
+
+    //se não estiver na camada necessária (1 camada está para 4 espaços) se move até chegar na certa
     if(ident > 0){
         std::cout << "entrando na camada: " << ident << '\n';
+
+        //enquanto a camada não for a certa, retorna o child de dentro do nó atual
         while(pos < ident){
             std::cout << "atualmente na camada: " << pos << '\n';
-            current_vector = &current_vector->childs[0];
+            current_vector = &current_vector->childs.back();
             std::cout << "entrada no nodo: " << current_vector->name << '\n';
             pos++;
         }
 
         std::cout << "adicioanando na camada: " << pos << " dentro do nodo: " << current_vector->name << '\n';
+
+        //após chegar na camada de destino, adiciona o grupo ou tag e valor
         current_vector->add_child(name, valor);
 
+    //se estievr sem identação, adicione na raíz
     }else if(ident == 0){
-        std::cout << "está vazio, adicioanando na raíz" << '\n';
+        std::cout << "está sem identação, adicioanando na raíz" << '\n';
         main_object.add_child(name, valor);
     }
     
 
 }
-
-/*testador de texto de montagem
-void file_reader::node_object_assembler(const std::string& name, const std::string& valor, const int& ident){
-    if(ident!=std::string::npos){
-        std::cout << std::string(ident * 2, ' ') << name << " : " << valor << '\n';
-    }else{
-        std::cout << "LINHA VAZIA" << '\n';
-    }
-}*/
-
-/*montador privado para cada linha do objeto node
-void file_reader::node_object_assembler(const std::string& name, const std::string& valor, node& node_in){
-    //verifica se o valor a ser adicionado é uma TAG e VALOR ou um CHILD
-    if(!node_in.search_node_child(name)){ //se não existir um nó com o mesmo nome já existente
-        if(valor.empty()){ //verifique se valor está vazio
-            node_in.add_child(name, ""); //crie um child
-        }else{ //se valor não estiver vazio
-            node_in.add_child(name, valor); //adicione uma tag com o nome e o valor dado
-        }
-    }else{ //se já exisitr um nó com o nome
-        node_object_assembler(name, valor, node_in[name]); //tente editar coisas dentro do nó
-    }
-}*/
