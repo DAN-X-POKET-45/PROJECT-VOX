@@ -5,7 +5,7 @@
 #include "xdl.hpp"
 
 int main(int argc, char **argv){
-    /*node oi={"root", "", {
+    /*xdl::node oi={"root", "", {
                 {"BYD", "feio"},
                 {"HAVAL", "feio"},
                 {"Fiat", "bonitinhos"},
@@ -20,7 +20,7 @@ int main(int argc, char **argv){
             }; //Final da inicialização do objeto
 
     //impressão de objetos
-    //recursive_print(oi);
+    //xdl::recursive_print(oi);
 
 
     //std::cout << oi["Toyota"]["op1"].get_standard_value() << '\n';
@@ -29,7 +29,7 @@ int main(int argc, char **argv){
 
     //std::cout << "MALLOCSIZE: " << node_size(oi) << '\n';
 
-    node ola = {"root", "", {
+    xdl::node ola = {"root", "", {
                 {"BYD", "feio"},
                 {"Toyota", "", {
                     {"op1", "não"},
@@ -44,20 +44,20 @@ int main(int argc, char **argv){
 ===================================
   TESTE DE MANIPULAÇÃO DE INTENS
 ===================================
-    recursive_print(ola);
+    xdl::recursive_print(ola);
 
     ola.add_child("VOLKS", "razoável");
 
-    recursive_print(ola);
+    xdl::recursive_print(ola);
 
     ola.delete_child("VOLKS");
 
-    recursive_print(ola);
+    xdl::recursive_print(ola);
 */
 
 
 
-    file_reader oi("test.xdl");
+    xdl::file_reader oi("test.xdl");
     //node test = oi.parse();
 
     std::cout << "-----------------" << '\n';
@@ -66,7 +66,7 @@ int main(int argc, char **argv){
 
     std::cout << "-----------------" << '\n';
 
-    file_writer tchau("write.xdl");
+    xdl::file_writer tchau("write.xdl");
     tchau.write(oi.parse());
 
     /*método de acesso por índice de filhos
