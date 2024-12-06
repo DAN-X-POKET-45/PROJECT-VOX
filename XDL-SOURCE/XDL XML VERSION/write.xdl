@@ -1,0 +1,12 @@
+words list{
+    words1{
+        [root:value]
+        [flag:value]
+        [list:value]
+    }
+    words2{
+        [root:null]
+        [flag:null]
+        [list:null]
+    }
+}

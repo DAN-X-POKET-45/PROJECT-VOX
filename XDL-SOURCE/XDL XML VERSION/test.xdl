@@ -1,0 +1,13 @@
+<words list>
+    <words1>
+        <root>value<root/>
+        <flag>value<flag/>
+        <list>value<list/>
+    <words1/>
+
+    <words2>
+        <root>null<root/>
+        <flag>null<flag/>
+        <list>null<list/>
+    <words2/>
+<words list/>
