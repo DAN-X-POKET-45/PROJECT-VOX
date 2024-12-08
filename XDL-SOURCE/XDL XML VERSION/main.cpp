@@ -68,7 +68,7 @@ int main(int argc, char **argv){
     std::cout << "-----------------" << '\n';
 
     xdl::file_writer tchau("write.xdl");
-    tchau.write(oi.parse());
+    tchau.export_as_xdl(oi.parse());
 
     /*método de acesso por índice de filhos
     std::cout << test2.childs[0].get_standard_value() << '\n';*/

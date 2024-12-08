@@ -123,13 +123,18 @@ namespace xdl{
         //construtor
         file_writer(const std::string path);
 
-        //impressor
-        void write(const node& content);
+        //exportador para json
+        void export_as_json(const node& content);
+
+        //exportador para XDL
+        void export_as_xdl(const node& content);
 
     private:
-        //Impressão recursiva em arquivo externo
-        void archive_printer(const node& node_in, int ident);
+        //impressão recursiva em arquivo json externo
+        void json_archive_printer(const node& node_in, int ident);
 
+        //impressão recursiva em arquivo xdl externo
+        void xdl_archive_printer(const node& node_in, int ident);
     };
 
     /*===================================*/
