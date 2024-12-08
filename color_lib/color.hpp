@@ -99,3 +99,11 @@ std::string background_color(int ANSI_ID){
     std::string code = "\033[48;5;" + std::to_string(ANSI_ID) + "m";
     return code;
 }
+
+void list_ANSI_table_colors(){
+    // Exibindo todas as 256 cores
+    for (int i = 0; i < 256; ++i) {
+        std::cout << "\033[38;5;" << i << "m" << "Cor " << i << ANSI_RESET << " ";
+        if (i % 16 == 15) std::cout << std::endl;
+    }
+}
