@@ -14,13 +14,13 @@ namespace xdl{
                 return child;
             }
         }
-        throw std::out_of_range("Child not found");
+        throw std::out_of_range("[XDL-NODE RETURNING ERROR!] Child not found!");
     }
 
     //retornador de referência de nodo pelo operador[] a partir do índice
     node& node::operator[](const int& key_index){
         if(key_index < 0 || key_index > childs.size()){
-            throw std::out_of_range("key_index does not match the object vector");
+            throw std::out_of_range("[XDL-NODE RETURNING ERROR!] index: " << key_index << " does not match the object vector");
         }else{
             return childs[key_index];
         }
@@ -34,7 +34,7 @@ namespace xdl{
             }
         }
 
-        std::cerr << "Node not found! Failed to found this node -> " << node_name <<  '\n';
+        std::cerr << "[XDL-NODE NODE_SEARCH ERROR!] Node not found! Failed to found this node -> " << node_name <<  '\n';
         return false;
     }
 
@@ -45,7 +45,7 @@ namespace xdl{
     //Cridor de filhos com valor
     void node::add_child(const std::string& in_name, const std::string& in_value){
         if(name.empty()){
-            std::cerr << "Error in child creating! Name is empty" << '\n';
+            std::cerr << "[XDL-NODE ADD_CHILD ERROR!] Error in child creating! Name is empty" << '\n';
         }
         childs.push_back(node(in_name, in_value));
     }
@@ -84,9 +84,9 @@ namespace xdl{
         try{
             return std::stoi(value);
         }catch(const std::invalid_argument& e){
-            std::cerr << "Invalid argument: " << e.what() << '\n';
+            std::cerr << "[XDL-NODE STOI ERROR!] Invalid argument: " << e.what() << '\n';
         }catch(const std::out_of_range& e){
-            std::cerr << "Out of range: " << e.what() << '\n';
+            std::cerr << "[XDL-NODE STOI ERROR!] Out of range: " << e.what() << '\n';
         }
 
         //retorno de erro
@@ -98,9 +98,9 @@ namespace xdl{
         try{
             return std::stof(value);
         }catch(const std::invalid_argument& e){
-            std::cerr << "Invalid argument: " << e.what() << '\n';
+            std::cerr << "[XDL-NODE STOF ERROR!] Invalid argument: " << e.what() << '\n';
         }catch(const std::out_of_range& e){
-            std::cerr << "Out of range: " << e.what() << '\n';
+            std::cerr << "[XDL-NODE STOF ERROR!] Out of range: " << e.what() << '\n';
         }
 
         //retorno de erro
@@ -112,9 +112,9 @@ namespace xdl{
         try{
             return std::stod(value);
         }catch(const std::invalid_argument& e){
-            std::cerr << "Invalid argument: " << e.what() << '\n';
+            std::cerr << "[XDL-NODE STOD ERROR!] Invalid argument: " << e.what() << '\n';
         }catch(const std::out_of_range& e){
-            std::cerr << "Out of range: " << e.what() << '\n';
+            std::cerr << "[XDL-NODE STOD ERROR!] Out of range: " << e.what() << '\n';
         }
 
         //retorno de erro
@@ -128,7 +128,7 @@ namespace xdl{
         }else if(value == "FALSE" || "False" || "false"){
             return false;
         }else{
-            std::cerr << "TYPE ERROR: The value is not correct!" << '\n';
+            std::cerr << "[XDL-NODE STOB ERROR!] TYPE ERROR: The value is not correct!" << '\n';
         }
 
         //retorno de erro
