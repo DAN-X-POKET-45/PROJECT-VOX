@@ -1,3 +1,8 @@
+#ifndef COLOR_LIB_HPP
+#define COLOR_LIB_HPP
+
+
+
 #include <iostream>
 #include <string>
 
@@ -107,3 +112,7 @@ void list_ANSI_table_colors(){
         if (i % 16 == 15) std::cout << std::endl;
     }
 }
+
+
+
+#endif //COLOR_LIB_HPP

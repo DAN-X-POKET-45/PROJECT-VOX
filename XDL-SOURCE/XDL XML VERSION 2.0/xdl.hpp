@@ -1,5 +1,5 @@
-#ifndef XDL_LIB
-#define XDL_LIB
+#ifndef XDL_LIB_HPP
+#define XDL_LIB_HPP
 
 
 
@@ -149,4 +149,4 @@ namespace xdl{
 
 
 
-#endif //XDL_LIB
+#endif //XDL_LIB_HPP
