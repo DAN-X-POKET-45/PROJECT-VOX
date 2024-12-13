@@ -19,10 +19,10 @@ namespace xdl{
 
         //Verifica se o arquivo foi aberto corretamente
         if(!xdl_archive.is_open()){
-            std::cerr << "[XDL-PARSER FILE ERROR!] Failed to open XDL archive in read mode: " << xdl_file_path << '\n';
+            std::cerr << "\033[31m[XDL-PARSER FILE ERROR!]\033[0m Failed to open XDL archive in read mode: " << xdl_file_path << '\n';
             //Se não puder abrir o arquivo, sai do construtor
             xdl_archive.close();
-            std::cerr << "[XDL-PARSER] XDL operation with file->" << xdl_file_path << " stoped!" << '\n';
+            std::cerr << "\033[31m[XDL-PARSER]\033[0m XDL operation with file->" << xdl_file_path << " stoped!" << '\n';
         }
 
 
@@ -167,8 +167,8 @@ namespace xdl{
         //se encontrar um grupo aberto a partir da variável group_lock o parseamento é parado
         if(group_lock<0){
             xdl_archive.close(); //<--fecha o arquivo e libera o stream de texto do arquivo da memória
-            std::cerr << "[XDL-PARSER GROUP ERROR!] Has many open groups in file: " << xdl_file_path << '\n';
-            std::cerr << "[XDL-PARSER] XDL operation with file-> " << xdl_file_path << " stoped!" << '\n';
+            std::cerr << "\033[31m[XDL-PARSER GROUP ERROR!]\033[0m Has many open groups in file: " << xdl_file_path << '\n';
+            std::cerr << "\033[31m[XDL-PARSER]\033[0m XDL operation with file-> " << xdl_file_path << " stoped!" << '\n';
         }
 
 

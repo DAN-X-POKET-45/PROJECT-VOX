@@ -19,10 +19,10 @@ namespace xdl{
 
         //Verifica se o arquivo foi aberto corretamente
         if(!xdl_archive.is_open()){
-            std::cerr << "[XDL-WRITER FILE ERROR!] Failed to open XDL archive in write mode: " << xdl_file_path << '\n';
+            std::cerr << "\033[31m[XDL-WRITER FILE ERROR!]\033[0m Failed to open XDL archive in write mode: " << xdl_file_path << '\n';
             //Se não puder abrir o arquivo, sai do construtor
             xdl_archive.close();
-            std::cerr << "[XDL-WRITER] XDL operation with file->" << xdl_file_path << " stoped!" << '\n';
+            std::cerr << "\033[31m[XDL-WRITER]\033[0m XDL operation with file->" << xdl_file_path << " stoped!" << '\n';
         }
 
         //gravador de conteúdo no arquivo de destino
@@ -35,10 +35,10 @@ namespace xdl{
 
         //Verifica se o arquivo foi aberto corretamente
         if(!xdl_archive.is_open()){
-            std::cerr << "[XDL-WRITER FILE ERROR!] Failed to open XDL archive in write mode: " << xdl_file_path << '\n';
+            std::cerr << "\033[31m[XDL-WRITER FILE ERROR!]\033[0m Failed to open XDL archive in write mode: " << xdl_file_path << '\n';
             //Se não puder abrir o arquivo, sai do construtor
             xdl_archive.close();
-            std::cerr << "[XDL-WRITER] XDL operation with file->" << xdl_file_path << " stoped!" << '\n';
+            std::cerr << "\033[31m[XDL-WRITER]\033[0m XDL operation with file->" << xdl_file_path << " stoped!" << '\n';
         }
 
         //gravador de conteúdo no arquivo de destino
