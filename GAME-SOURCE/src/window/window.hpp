@@ -1,10 +1,9 @@
-#ifndef WINDOW_HPP
-#define WINDOW_HPP
+#ifndef WINDOW_OBJECT_HPP
+#define WINDOW_OBJECT_HPP
 
-//inclusão das bibliotecas necessárias
 #include <iostream>
 #include <string>
-#include <GLFW/glfw3.h>
+#include "../libs/GLFW/glfw3.h"
 
 class window{
 public:
@@ -26,7 +25,7 @@ public:
     //define o título da janela
     void set_tittle(const char* tittle);
 
-    //destrutor de obejtos de janela
+    //destrutor de obejto da janela
     ~window();
 
 private:
@@ -35,9 +34,9 @@ private:
     //função de erro CALL-BACK obrigatória da biblioteca GLFW
     static void error_callback(int error, const char* description);
 
-    //função de detecç~ao de presionamento de teclas
+    //função de detecção de pressionamento de teclas
     static void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods);
 };
 
 
-#endif //WINDOW_HPP
+#endif //WINDOW_OBJECT_HPP

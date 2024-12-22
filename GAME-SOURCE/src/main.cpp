@@ -1,4 +1,5 @@
 #include <iostream>
+#include <GL/gl.h>
 #include "window/window.hpp"
 
 int main(){

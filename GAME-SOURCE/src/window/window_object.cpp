@@ -1,10 +1,9 @@
 //inclusão do arquivo de definição
 #include "window.hpp"
 
-//inclusão das bibliotecas necessárias
 #include <iostream>
 #include <string>
-#include <GLFW/glfw3.h>
+#include "../libs/GLFW/glfw3.h"
 
 window::window(int width, int height, const char* title){
     //verificador de inicializaçao da biblioteca GLFW
