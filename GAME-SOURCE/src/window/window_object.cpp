@@ -8,13 +8,13 @@
 window::window(int width, int height, const char* title){
     //verificador de inicializaçao da biblioteca GLFW
     if(!glfwInit()){
-        std::cerr << "WINDOW ERROR! GLFW is not initialized" << '\n';
+        std::cerr << "WINDOW ERROR! GLFW [libglfw3.a] is not initialized" << '\n';
     }
 
-    //definição de versão máxima
+    //definição de versão máxima da Open GL
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
 
-    //definição de versão mínima
+    //definição de versão mínima da Open GL
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
 
     //configurador de perfil Open GL
@@ -29,14 +29,20 @@ window::window(int width, int height, const char* title){
     //definição da callback de tratamento de erro
     glfwSetErrorCallback(error_callback);
 
+    //se a criaçao do objeto de janela falhar
+    if(!glfw_window){
+        glfwTerminate();
+        std::cerr << "WINDOW ERROR! Failed to create a GLFW window for some random reason" << '\n';
+    }
+
     //definição da callback de tratamento de dispositivos de entrada
     glfwSetKeyCallback(glfw_window, key_callback);
 
-    //se a criaçao do objeto de janela falhar
-    if (!glfw_window){
-        glfwTerminate();
-        std::cerr << "WINDOW ERROR! Failed to create a GLFW window" << '\n';
-    }
+    //tornar o contexto Opengl GL principal na janela GLFW atual
+    glfwMakeContextCurrent(glfw_window);
+
+    //habilitar o V-Sync
+    glfwSwapInterval(1);
 
 };
 
@@ -46,27 +52,27 @@ window::~window(){
     glfwTerminate();
 }
 
-//verificador de janela
+//verificador de fechamento da janela pelo sistema operacional
 bool window::should_close(){
     return glfwWindowShouldClose(glfw_window);
 }
 
-//troca de buffers
+//alteração de buffers de renderização
 void window::swap_buffers(){
     glfwSwapBuffers(glfw_window);
 }
 
-//atualizador de eventos
+//atualizador de eventos da janela
 void window::poll_events(){
     glfwPollEvents();
 }
 
-//definidor do tamanho da janela
+//modificador de tamanho da janela
 void window::set_size(int width, int height){
     glfwSetWindowSize(glfw_window, width, height);
 }
 
-// Define o título da janela
+//modificador de título da janela
 void window::set_tittle(const char* title){
     glfwSetWindowTitle(glfw_window, title);
 }
@@ -75,10 +81,10 @@ void window::set_tittle(const char* title){
 
 //callback de erro
 void window::error_callback(int error, const char* description){
-    std::cerr << "Error: (" << error << "): " << description << std::endl;
+    std::cerr << "GLFW RUNTIME ERROR! [" << error << "]: " << description << '\n';
 }
 
-//tratamento de condicionais de entrada
+//tratamento de condicionais de entrada da janela GLFW
 void window::key_callback(GLFWwindow* window, int key, int scancode, int action, int mods) {
     if (action == GLFW_PRESS) {
         switch(key){

@@ -7,8 +7,15 @@
 
 class window{
 public:
+    /*===================================*/
+    /*       Declarações do GLFW3        */
+    /*===================================*/
+    
     //[CONSTRUTOR] Define a pré-configuração da jenela
-    window(int width, int height, const char* title);
+    window(int width=300, int height=200, const char* title="unamed window");
+
+    //objeto da janela glfw
+    GLFWwindow* glfw_window;
 
     //verificador de fechamento de janela
     bool should_close();
@@ -29,8 +36,6 @@ public:
     ~window();
 
 private:
-    GLFWwindow* glfw_window;
-
     //função de erro CALL-BACK obrigatória da biblioteca GLFW
     static void error_callback(int error, const char* description);
 

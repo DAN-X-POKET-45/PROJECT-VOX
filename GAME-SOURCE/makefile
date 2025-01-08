@@ -13,11 +13,17 @@ CXXFLAGS = -Wall
 #Compiler additional libs
 LIBS = -lGL
 
-#Compiler custom libs
-LIBS+= -Lsrc/libs/GLFW -lglfw3
+#GLFW custom lib
+LIBS+= -Isrc/libs/GLFW -Lsrc/libs/GLFW -lglfw3
+
+#DearImGui custom lib
+LIBS+= -Isrc/libs/DearImGui -Lsrc/libs/DearImGui -limgui
 
 #Source files
 src = src/main.cpp src/window/window_object.cpp
+
+#DearImGui
+src += $(wildcard src/libs/DearImGui/*.cpp)
 
 all:
 	@echo $(shell date): Compiling Project-VOX [core] at $(shell hostname)
