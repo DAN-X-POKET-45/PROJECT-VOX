@@ -1,6 +1,18 @@
 #ifndef XDL_LIB_HPP
 #define XDL_LIB_HPP
 
+/*
+__  __  ____  _      
+\ \/ / |  _ \| |     
+ \  /  | | | | |     
+ /  \  | |_| | |___  
+/_/\_\ |____/|_____|
+
+Extensive Direct Language - megumin interpreter version 1.0
+
+By DAN-X POKET 45 (Daniel poket 45)
+
+*/
 
 
 #include <initializer_list>
@@ -8,7 +20,6 @@
 #include <fstream>
 #include <string>
 #include <vector>
-
 
 namespace xdl{
     class node{
@@ -141,9 +152,94 @@ namespace xdl{
 
 
 
+    /*===================================*/
+    /*           IMPRESSORES             */
+    /*===================================*/
+
     void recursive_print(const node& node_in, int ident = 0);
 
+    /*===================================*/
+
+
+
+    /*===================================*/
+    /*            DEPURAÇÃO              */
+    /*===================================*/
+
     int node_size(const node& node_in);
+
+    /*===================================*/
+
+
+
+    /*===================================*/
+    /*            VALIDADORES            */
+    /*===================================*/
+
+    /**
+    * @brief checagem de erros de identação
+    * 
+    * @param raw_input_data fluxo de entrada de dados de um arquivo ou string com conteúdo bruto
+    * 
+    * @return valor booleano que indica erros
+    */
+    bool check_ident_errors(const std::string& xdl_file_path);
+
+    
+
+    /**
+    * @brief checagem de erros de espaçamento entre uma tag e outra
+    * 
+    * @param raw_input_data fluxo de entrada de dados de um arquivo ou string com conteúdo bruto
+    * 
+    * @return valor booleano que indica erros
+    */
+    bool check_spacement_errors(const std::string& xdl_file_path);
+
+
+
+    /**
+    * @brief checagem de erros de sintaxe na criação das tags junto com valores
+    * 
+    * @param raw_input_data fluxo de entrada de dados de um arquivo ou string com conteúdo bruto
+    * 
+    * @return valor booleano que indica erros
+    */
+    bool check_tag_syntax_errors(const std::string& xdl_file_path);
+
+
+
+    /**
+    * @brief checagem de erros de sintaxe na criação de grupos de tags
+    * 
+    * @param raw_input_data fluxo de entrada de dados de um arquivo ou string com conteúdo bruto
+    * 
+    * @return valor booleano que indica erros
+    */
+    bool check_group_syntax_errors(const std::string& xdl_file_path);
+
+
+
+    /**
+    * @brief checagem de erros de sintaxe em valores pré-definidos
+    * 
+    * @param raw_input_data fluxo de entrada de dados de um arquivo ou string com conteúdo bruto
+    * 
+    * @return valor booleano que indica erros
+    */
+    bool check_predefined_value_errors(const std::string& xdl_file_path);
+
+
+
+    /**
+    * @brief checagem de erros de sintaxe na criação de fechamentos de grupos
+    * 
+    * @param raw_input_data fluxo de entrada de dados de um arquivo ou string com conteúdo bruto
+    * 
+    * @return valor booleano que indica erros
+    */
+    bool check_close_errors(const std::string& xdl_file_path);
+
 
 }
 

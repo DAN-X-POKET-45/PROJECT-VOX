@@ -58,8 +58,8 @@ int main(int argc, char **argv){
 
     xdl::file_reader oi("test.xdl");
     std::cout << "main.cpp: pós seleção de caminho de arquivo" << '\n';
-
-    //xdl::node test = oi.parse();
+    xdl::check_tag_syntax_errors("test.xdl");
+    xdl::node test = oi.parse();
 
     std::cout << "-----------------" << '\n';
 
@@ -67,8 +67,10 @@ int main(int argc, char **argv){
 
     std::cout << "-----------------" << '\n';
 
-    xdl::file_writer tchau("write.xdl");
-    tchau.export_as_xdl(oi.parse());
+
+
+    //xdl::file_writer tchau("write.xdl");
+    //tchau.export_as_xdl(oi.parse());
 
     /*método de acesso por índice de filhos
     std::cout << test2.childs[0].get_standard_value() << '\n';*/
