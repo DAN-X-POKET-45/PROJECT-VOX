@@ -221,17 +221,6 @@ namespace xdl{
 
 
     /**
-    * @brief checagem de erros de sintaxe em valores pré-definidos
-    * 
-    * @param raw_input_data fluxo de entrada de dados de um arquivo ou string com conteúdo bruto
-    * 
-    * @return valor booleano que indica erros
-    */
-    bool check_predefined_value_errors(const std::string& xdl_file_path);
-
-
-
-    /**
     * @brief checagem de erros de sintaxe na criação de fechamentos de grupos
     * 
     * @param raw_input_data fluxo de entrada de dados de um arquivo ou string com conteúdo bruto

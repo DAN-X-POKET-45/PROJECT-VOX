@@ -58,7 +58,7 @@ int main(int argc, char **argv){
 
     xdl::file_reader oi("test.xdl");
     std::cout << "main.cpp: pós seleção de caminho de arquivo" << '\n';
-    xdl::check_tag_syntax_errors("test.xdl");
+    xdl::check_group_syntax_errors("test.xdl");
     xdl::node test = oi.parse();
 
     std::cout << "-----------------" << '\n';
