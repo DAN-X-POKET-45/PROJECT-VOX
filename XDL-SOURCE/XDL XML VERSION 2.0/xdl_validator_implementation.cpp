@@ -58,12 +58,10 @@ namespace xdl{
 
 
 
-
     bool check_spacement_errors(const std::string& xdl_file_path){
         //retorno padrão
         return false;
     }
-
 
 
 

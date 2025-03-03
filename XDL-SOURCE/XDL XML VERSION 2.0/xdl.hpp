@@ -18,6 +18,7 @@ By DAN-X POKET 45 (Daniel poket 45)
 #include <initializer_list>
 #include <iostream>
 #include <fstream>
+#include <sstream>
 #include <string>
 #include <vector>
 
@@ -130,6 +131,8 @@ namespace xdl{
         std::ofstream xdl_archive;
         //variável global do caminho do arquivo xdl definido no construtor
         std::string xdl_file_path;
+        //variável de retorno de fluxo de string para o impressor de string streams
+        std::stringstream xdl_ss;
 
         //construtor
         file_writer(const std::string path);
@@ -140,12 +143,20 @@ namespace xdl{
         //exportador para XDL
         void export_as_xdl(const node& content);
 
+        //exportador para string stream - fluxo de caractéres
+        std::stringstream& export_as_stringstream(const node& content);
+
     private:
         //impressão recursiva em arquivo json externo
         void json_archive_printer(const node& node_in, int ident);
 
         //impressão recursiva em arquivo xdl externo
         void xdl_archive_printer(const node& node_in, int ident);
+
+        //impressão recursiva para string stream
+        void xdl_string_stream_printer(const node& node_in, int ident);
+
+        
     };
 
     /*===================================*/
@@ -217,18 +228,6 @@ namespace xdl{
     * @return valor booleano que indica erros
     */
     bool check_group_syntax_errors(const std::string& xdl_file_path);
-
-
-
-    /**
-    * @brief checagem de erros de sintaxe na criação de fechamentos de grupos
-    * 
-    * @param raw_input_data fluxo de entrada de dados de um arquivo ou string com conteúdo bruto
-    * 
-    * @return valor booleano que indica erros
-    */
-    bool check_close_errors(const std::string& xdl_file_path);
-
 
 }
 

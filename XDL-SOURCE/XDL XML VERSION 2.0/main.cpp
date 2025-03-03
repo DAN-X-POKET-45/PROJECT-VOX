@@ -2,6 +2,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <sstream>
 #include "xdl.hpp"
 
 int main(int argc, char **argv){
@@ -56,13 +57,13 @@ int main(int argc, char **argv){
 */
 
 
-    xdl::file_reader oi("test.xdl");
-    std::cout << "main.cpp: pós seleção de caminho de arquivo" << '\n';
-    xdl::check_group_syntax_errors("test.xdl");
-    xdl::node test = oi.parse();
+    xdl::file_reader entrada("test.xdl");
+    xdl::node test = entrada.parse();
+
+    xdl::file_writer saida("write.xdl");
+
 
     std::cout << "-----------------" << '\n';
-
     //xdl::recursive_print(test);
 
     std::cout << "-----------------" << '\n';
