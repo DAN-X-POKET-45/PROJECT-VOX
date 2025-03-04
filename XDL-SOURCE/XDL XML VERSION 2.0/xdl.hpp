@@ -10,7 +10,7 @@ __  __  ____  _
 
 Extensive Direct Language - megumin
 source version: 16.0 
-codename: megumin
+codename: megumin 1.0
 author: DAN-X POKET 45 (Daniel poket 45)
 license: PRIVATE
 */
