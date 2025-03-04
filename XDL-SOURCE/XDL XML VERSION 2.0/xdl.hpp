@@ -35,30 +35,66 @@ namespace xdl{
     */
     class node{
     public:
+        /**
+         * @brief name of this node
+         */
         std::string name;         //tag
+
+        /**
+         * @brief value of this node
+         */
         std::string value;        //valor
+
+        /**
+         * @brief childs of this node
+         */
         std::vector<node> childs; //subnodes
 
-        //construtor para inicializar o nó com nome, valor e filhos
+        /**
+         * @brief default constructor
+         * @param name_in the name of the node
+         * @param value_in the value of the node
+         * @param child_in the child nodes of the node
+         * @note you can build a entire node form this constrcutor in the code
+         */
         node(const std::string& name_in, const std::string& value_in, std::initializer_list<node> child_in = {}) : name(name_in), value(value_in), childs(child_in) {}
 
-        //retornador de referência de nodo pelo operador[] a partir do nome
+        /**
+         * @brief reference returner from the name of the child node
+         * @param key_in the name of the child node
+         * @return node - the reference of the child node
+         */
         node& operator[](const std::string& key_in);
 
-        //retornador de referência de nodo pelo operador[] a partir do índice
+        /**
+         * @brief reference returner from the index of the child node
+         * @param key_index the index of the child node
+         * @return node - the reference of the child node
+         */
         node& operator[](const int& key_index);
 
-        //verifiador de existência de nodo
+        /**
+         * @brief search for a node by name
+         * @param node_name the name of the node to be searched
+         * @return node - if found return true if not found return false
+         */
         bool search_node_child(const std::string& node_name);
 
     /*===================================*/
     /*   FUNÇÕES DE CRIAÇÃO E REMOÇÃO    */
     /*===================================*/
 
-        //Cridor de filhos com valor
+        /**
+         * @brief add a child to the node
+         * @param in_name the name of the child
+         * @param in_value the value of the child
+         */
         void add_child(const std::string& in_name, const std::string& in_value="");
 
-        //Destruídor de filhos
+        /**
+         * @brief delete a child from the node
+         * @param in_node the node name to be deleted
+         */
         void delete_child(const std::string& in_name);
 
 
@@ -68,10 +104,16 @@ namespace xdl{
     /*       FUNÇÕES DE MODIFICAÇÃO      */
     /*===================================*/
 
-        //troca de nome
+        /**
+         * @brief change the name of the node
+         * @param input_name the new name of the node
+         */
         void change_name(const std::string& input_name);
 
-        //Troca de valor
+        /**
+         * @brief change the value of the node
+         * @param input_value the new value of the node
+         */
         void change_value(const std::string& input_value);
 
     /*===================================*/
@@ -82,25 +124,42 @@ namespace xdl{
     /*  FUNÇÕES DE CONVERSÃO DE VALORES  */
     /*===================================*/
 
-        //Converter para int
+        /**
+         * @brief convert the value and return the int value of the node
+         * @return int - the int value converted
+         */
         int get_int_value();
 
-        //Converter para float
+        /**
+         * @brief convert the value and return the float value of the node
+         * @return float - the float value converted
+         */
         float get_float_value();
 
-        //Converter para double
+        /**
+         * @brief convert the value and return the double value of the node
+         * @return double - the double value converted
+        */
         double get_double_value();
 
-        //Verificador e conversor de valor para booleano
+        /**
+         * @brief convert the value and return the boolean value of the node
+         * @return bool - the boolean value converted
+         */
         bool get_boolean_value();
 
-        //retornador de valor básico
+        /**
+         * @brief get the standard std::string value of the node
+         * @return std::string - the standard value of the node
+         */
         std::string get_standard_value();
 
     /*===================================*/
 
 
-        //Membro impressor
+        /**
+         * @brief print all info of the node
+         */
         void print();
 
     };
@@ -118,20 +177,39 @@ namespace xdl{
     */
     class file_reader{
     public:
-        //variável para guardar o stream bruto do ifstream do arquivo carregado
+        /**
+         * @brief the raw content of the xdl file
+         */
         std::string xdl_raw_content;
-        //Objeto de entrada do arquivo xdl a partir da ifstream
+
+        /**
+         * @brief the input xdl file
+         */
         std::ifstream xdl_archive;
-        //variável global de acesso ao caminho do arquivo xdl definido no construtor
+
+        /**
+         * @brief the path to the xdl file
+         */
         std::string xdl_file_path;
 
-        //construtor
+
+
+        /**
+         * @brief construtor
+         * @param path the path to the file to be read
+         */
         file_reader(std::string path);
 
-        //parseador
+        /**
+         * @brief parse the entire xdl file and return the root node
+         * @return root node - the root node of the xdl file parsed
+         */
         node parse();
 
-        //conversor para string stream
+        /**
+         * @brief convert the entire xdl file to a string stream
+         * @return std::stringstream - the string stream with the content
+         */
         std::stringstream convert_to_stringstream();
     private:
         void node_object_assembler(const std::string& name, const std::string& valor, const int& ident);
@@ -161,23 +239,44 @@ namespace xdl{
     */
     class file_writer{
     public:
-        //objeto de entrada do arquivo xdl a partir da ofstream para a gravação
+        /**
+         * @brief xdl file to be written
+         */
         std::ofstream xdl_archive;
-        //variável global do caminho domain namespace of the XDL library, contains all the classes and functions of the library arquivo xdl definido no construtor
+
+        /**
+         * @brief path to the xdl file to be written
+         */
         std::string xdl_file_path;
-        //variável de retorno de fluxo de string para o impressor de string streams
+
+        /**
+         * @brief store the content of the xdl file to be written in a string stream used by export_as_stringstream()
+         */
         std::stringstream xdl_ss;
 
-        //construtor
+        /**
+         * @brief construtor
+         * @param path the path to the file to be written - NULL VALUE just in STRING STREAM EXPORT
+         */
         file_writer(const std::string path);
 
-        //exportador para json
+        /**
+         * @brief export a entire node to an existing or new JSON file in the file system
+         * @param content the node to make the export as JSON file
+         */
         void export_as_json(const node& content);
 
-        //exportador para XDL
+        /**
+         * @brief export a entire node to an existing or new xdl  file in the file system
+         * @param content the node to make the export as xdl file
+         */
         void export_as_xdl(const node& content);
 
-        //exportador para string stream - fluxo de caractéres
+        /**
+         * @brief export a entire node to a string stream
+         * @param node the node to make the export as string stream similiar to an archive
+         * @return std::stringstream& - the string stream with the content
+         */
         std::stringstream& export_as_stringstream(const node& content);
 
     private:
@@ -201,6 +300,10 @@ namespace xdl{
     /*           IMPRESSORES             */
     /*===================================*/
 
+
+    /**
+     * @brief print all nodes inside a node with all information
+     */
     void recursive_print(const node& node_in, int ident = 0);
 
     /*===================================*/
@@ -211,6 +314,9 @@ namespace xdl{
     /*            DEPURAÇÃO              */
     /*===================================*/
 
+    /**
+     * @brief basic size analizer
+     */
     int node_size(const node& node_in);
 
     /*===================================*/
@@ -223,9 +329,7 @@ namespace xdl{
 
     /**
     * @brief checagem de erros de identação
-    * 
     * @param raw_input_data fluxo de entrada de dados de um arquivo ou string com conteúdo bruto
-    * 
     * @return valor booleano que indica erros
     */
     bool check_ident_errors(const std::string& xdl_file_path);
@@ -234,9 +338,7 @@ namespace xdl{
 
     /**
     * @brief checagem de erros de espaçamento entre uma tag e outra
-    * 
     * @param raw_input_data fluxo de entrada de dados de um arquivo ou string com conteúdo bruto
-    * 
     * @return valor booleano que indica erros
     */
     bool check_spacement_errors(const std::string& xdl_file_path);
@@ -245,9 +347,7 @@ namespace xdl{
 
     /**
     * @brief checagem de erros de sintaxe na criação das tags junto com valores
-    * 
     * @param raw_input_data fluxo de entrada de dados de um arquivo ou string com conteúdo bruto
-    * 
     * @return valor booleano que indica erros
     */
     bool check_tag_syntax_errors(const std::string& xdl_file_path);
@@ -256,9 +356,7 @@ namespace xdl{
 
     /**
     * @brief checagem de erros de sintaxe na criação de grupos de tags
-    * 
     * @param raw_input_data fluxo de entrada de dados de um arquivo ou string com conteúdo bruto
-    * 
     * @return valor booleano que indica erros
     */
     bool check_group_syntax_errors(const std::string& xdl_file_path);
