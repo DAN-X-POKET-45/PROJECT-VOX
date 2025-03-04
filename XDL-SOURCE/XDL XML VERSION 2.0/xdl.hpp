@@ -8,12 +8,12 @@ __  __  ____  _
  /  \  | |_| | |___  
 /_/\_\ |____/|_____|
 
-Extensive Direct Language - megumin interpreter version 1.0
-
-By DAN-X POKET 45 (Daniel poket 45)
-
+Extensive Direct Language - megumin
+source version: 16.0 
+codename: megumin
+author: DAN-X POKET 45 (Daniel poket 45)
+license: PRIVATE
 */
-
 
 #include <initializer_list>
 #include <iostream>
@@ -22,7 +22,17 @@ By DAN-X POKET 45 (Daniel poket 45)
 #include <string>
 #include <vector>
 
+/**
+* @namespace xdl
+*
+* @brief main namespace of the XDL library, contains all the classes and functions of the library
+*/
 namespace xdl{
+    /**
+    * @class node
+    *
+    * @brief dynamic object for storing and manipulating xdl parsed files and for some other purposes
+    */
     class node{
     public:
         std::string name;         //tag
@@ -54,10 +64,18 @@ namespace xdl{
 
     /*===================================*/
 
-        //Troca de valor
-        void change_value(std::string input_value);
+    /*===================================*/
+    /*       FUNÇÕES DE MODIFICAÇÃO      */
+    /*===================================*/
 
-        std::string get_standard_value();
+        //troca de nome
+        void change_name(const std::string& input_name);
+
+        //Troca de valor
+        void change_value(const std::string& input_value);
+
+    /*===================================*/
+
 
 
     /*===================================*/
@@ -76,6 +94,9 @@ namespace xdl{
         //Verificador e conversor de valor para booleano
         bool get_boolean_value();
 
+        //retornador de valor básico
+        std::string get_standard_value();
+
     /*===================================*/
 
 
@@ -90,6 +111,11 @@ namespace xdl{
     /*             PARSEADOR             */
     /*===================================*/
 
+    /**
+    * @class file_reader
+    *
+    * @brief the read method of the XDL library, for reading, conversion for strins stream and parsing XDL files
+    */
     class file_reader{
     public:
         //variável para guardar o stream bruto do ifstream do arquivo carregado
@@ -104,6 +130,9 @@ namespace xdl{
 
         //parseador
         node parse();
+
+        //conversor para string stream
+        std::stringstream convert_to_stringstream();
     private:
         void node_object_assembler(const std::string& name, const std::string& valor, const int& ident);
 
@@ -125,11 +154,16 @@ namespace xdl{
     /*         IMPRESSOR EXTERNO         */
     /*===================================*/
 
+    /**
+    * @class file_writer
+    *
+    * @brief the write method of the XDL library, for writing, conversion for json and exporting XDL Dynamic Objects for files
+    */
     class file_writer{
     public:
         //objeto de entrada do arquivo xdl a partir da ofstream para a gravação
         std::ofstream xdl_archive;
-        //variável global do caminho do arquivo xdl definido no construtor
+        //variável global do caminho domain namespace of the XDL library, contains all the classes and functions of the library arquivo xdl definido no construtor
         std::string xdl_file_path;
         //variável de retorno de fluxo de string para o impressor de string streams
         std::stringstream xdl_ss;

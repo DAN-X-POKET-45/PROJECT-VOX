@@ -60,11 +60,11 @@ int main(int argc, char **argv){
     xdl::file_reader entrada("test.xdl");
     xdl::node test = entrada.parse();
 
-    xdl::file_writer saida("write.xdl");
+    //xdl::file_writer saida("write.xdl");
+
+    test.print();
 
 
-    std::cout << "-----------------" << '\n';
-    //xdl::recursive_print(test);
 
     std::cout << "-----------------" << '\n';
 

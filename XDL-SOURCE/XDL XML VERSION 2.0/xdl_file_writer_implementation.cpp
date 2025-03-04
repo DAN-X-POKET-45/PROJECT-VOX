@@ -53,7 +53,7 @@ namespace xdl{
         xdl_string_stream_printer(content, 0);
 
         //retorno da string stream pós gravação
-        return xdl_ss; 
+        return xdl_ss;
         
     }
 

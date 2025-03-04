@@ -185,6 +185,30 @@ namespace xdl{
 
     }
 
+
+    std::stringstream file_reader::convert_to_stringstream(){
+        //caminho pro arquivo
+        xdl_archive.open(xdl_file_path);
+
+        //Verifica se o arquivo foi aberto corretamente
+        if(!xdl_archive.is_open()){
+            std::cerr << "\033[31m[XDL-PARSER FILE ERROR!]\033[0m Failed to open XDL archive in read mode: " << xdl_file_path << '\n';
+            //Se não puder abrir o arquivo, sai do construtor
+            xdl_archive.close();
+            std::cerr << "\033[31m[XDL-PARSER]\033[0m XDL operation with file->" << xdl_file_path << " stoped!" << '\n';
+        }
+
+        //objeto de retorno já convertido para uma string stream
+        std::stringstream archive_content_as_stream;
+
+        //conversão de file stream para string stream
+        archive_content_as_stream << xdl_archive.rdbuf();
+
+        //retorna o objeto de string stream
+        return archive_content_as_stream;
+    }
+
+
     //montador privado para cada linha do objeto node
     void file_reader::node_object_assembler(const std::string& name, const std::string& valor, const int& ident){
         size_t pos = 0;

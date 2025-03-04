@@ -65,8 +65,13 @@ namespace xdl{
 
     /*===================================*/
 
+    //troca de nome
+    void node::change_name(const std::string& input_name){
+        name = input_name;
+    }
+
     //Troca de valor
-    void node::change_value(std::string input_value){
+    void node::change_value(const std::string& input_value){
         value = input_value;
     }
 
