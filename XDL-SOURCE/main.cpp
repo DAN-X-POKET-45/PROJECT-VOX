@@ -62,8 +62,7 @@ int main(int argc, char **argv){
 
     //xdl::file_writer saida("write.xdl");
 
-    test.print();
-
+    xdl::recursive_print(test);
 
 
     std::cout << "-----------------" << '\n';
