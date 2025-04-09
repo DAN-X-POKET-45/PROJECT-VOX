@@ -3,7 +3,10 @@
 
 #include <iostream>
 #include <string>
-#include "../libs/GLFW/glfw3.h"
+
+//ordem fixa
+#include <glad.h>
+#include <glfw3.h>
 
 window::window(int width, int height, const char* title){
     //verificador de inicializaçao da biblioteca GLFW
@@ -35,11 +38,18 @@ window::window(int width, int height, const char* title){
         std::cerr << "WINDOW ERROR! Failed to create a GLFW window for some random reason" << '\n';
     }
 
-    //definição da callback de tratamento de dispositivos de entrada
-    glfwSetKeyCallback(glfw_window, key_callback);
-
     //tornar o contexto Opengl GL principal na janela GLFW atual
     glfwMakeContextCurrent(glfw_window);
+
+    //verificador de inicializaçao da biblioteca GLAD
+    if(!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
+        std::cerr << "WINDOW ERROR! Failed to initialize GLAD GL loader for some random reason" << '\n';
+        glfwDestroyWindow(glfw_window);
+        glfwTerminate();
+    }
+
+    //definição da callback de tratamento de dispositivos de entrada
+    glfwSetKeyCallback(glfw_window, key_callback);
 
     //habilitar o V-Sync
     glfwSwapInterval(1);
@@ -73,7 +83,7 @@ void window::set_size(int width, int height){
 }
 
 //modificador de título da janela
-void window::set_tittle(const char* title){
+void window::set_title(const char* title){
     glfwSetWindowTitle(glfw_window, title);
 }
 

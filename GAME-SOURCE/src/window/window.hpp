@@ -3,7 +3,10 @@
 
 #include <iostream>
 #include <string>
-#include "../libs/GLFW/glfw3.h"
+
+//ordem fixa
+#include <glad.h>
+#include <glfw3.h>
 
 class window{
 public:
@@ -30,7 +33,7 @@ public:
     void set_size(int width, int height);
 
     //define o título da janela
-    void set_tittle(const char* tittle);
+    void set_title(const char* title);
 
     //destrutor de obejto da janela
     ~window();
