@@ -21,7 +21,7 @@ CXXFLAGS = -Wall
 ###########################
 
 #Header directories
-INCLUDE_DIRS= -Ilibs/GLAD \
+INCLUDE_DIRS= -Ilibs/GLEW \
 	          -Ilibs/GLFW \
 			  -Ilibs/DearImGui \
 			  -Isrc/window
@@ -29,13 +29,13 @@ INCLUDE_DIRS= -Ilibs/GLAD \
               
 
 #Libs directories
-LIB_DIRS= -Llibs/GLAD \
+LIB_DIRS= -Llibs/GLEW \
 		  -Llibs/GLFW \
 		  -Llibs/DearImGui
 
 
 #Included libraries (order matters)
-LIBS= -lglad \
+LIBS= -lglew \
       -lGL \
 	  -lglfw3 \
 	  -limgui

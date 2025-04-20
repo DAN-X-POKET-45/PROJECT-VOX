@@ -1,9 +1,9 @@
 #include <iostream>
-#include <GL/gl.h>
-#include <window.hpp>
-#include <imgui.h>
-#include <imgui_impl_glfw.h>
-#include <imgui_impl_opengl3.h>
+#include "gl.h"
+//#include <window.hpp>
+//#include <imgui.h>
+//#include <imgui_impl_glfw.h>
+//#include <imgui_impl_opengl3.h>
 
 int main(){
     window game_window(600, 400, "VOX TEST"); //Objeto de janela personalizado
@@ -37,7 +37,6 @@ int main(){
         int display_w, display_h;
         glfwGetFramebufferSize(game_window.glfw_window, &display_w, &display_h);
         glViewport(0, 0, display_w, display_h);
-
         //Limpar a tela com uma cor de fundo
         glClearColor(1.0f, 0.5f, 0.5f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT);
