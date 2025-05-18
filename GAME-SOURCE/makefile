@@ -24,7 +24,8 @@ CXXFLAGS = -Wall
 INCLUDE_DIRS= -Ilibs/GLEW \
 	          -Ilibs/GLFW \
 			  -Ilibs/DearImGui \
-			  -Isrc/window
+			  -Isrc/window \
+			  -Isrc/vox-engine
 
               
 
@@ -46,22 +47,6 @@ LIBS= -lglew \
 ##############################
 #  DIRECTIVE CONFIG SECTION  #
 ##############################
-
-
-#GLAD lib
-#LIBS= -Ilibs/GLAD -Llibs/GLAD -lglad
-
-#Open GL lib
-#LIBS+= -lGL
-
-#GLFW lib
-#LIBS+= -Ilibs/GLFW -Llibs/GLFW -lglfw3
-
-#DearImGui lib
-#LIBS+= -Ilibs/DearImGui -Llibs/DearImGui -limgui
-
-#Custom lib for window creating
-#LIBS+= -Isrc/window
 
 #Source files
 src = src/main.cpp src/window/window_object.cpp

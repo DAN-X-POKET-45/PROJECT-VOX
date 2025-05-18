@@ -7,30 +7,30 @@
 
 //pré configuração para shader
 
-void shadertest(){
+void standardShader(){
     const char* vertexShaderSource = "#version 420 core\n"
         "layout (location = 0) in vec3 aPos;\n"
         "void main()\n"
         "{\n"
         "   gl_Position = vec4(aPos.x, aPos.y, aPos.z, 1.0);\n"
-        "}\0";
+        "}";
 
     const char* fragmentShaderSource = "#version 420 core\n"
         "out vec4 FragColor;\n"
         "void main()\n"
         "{\n"
-        "   FragColor = vec4(0.0f, 0.0f, 1.0f, 1.0f);\n"
-        "}\0";
+        "   FragColor = vec4(0.0f, 0.0f, 0.0f, 1.0f);\n"
+        "}";
 
     unsigned int vertexShader;
     vertexShader = glCreateShader(GL_VERTEX_SHADER);
     glShaderSource(vertexShader, 1, &vertexShaderSource, NULL);
     glCompileShader(vertexShader);
 
+    //código constante de verificação de sucesso de compilação do vertexShader
     int success;
     char infoLog[512];
     glGetShaderiv(vertexShader, GL_COMPILE_STATUS, &success);
-
     if(!success){
         glGetShaderInfoLog(vertexShader, 512, NULL, infoLog);
         std::cout << "ERROR: VERTEX SHADER COMPILATION_FAILED" << "\n" << infoLog << "\n";
@@ -43,6 +43,8 @@ void shadertest(){
 
     //fim da compilação de shaders
 
+    //início da criação do programa de shader
+
     unsigned int shaderProgram;
     shaderProgram = glCreateProgram();
 
@@ -50,6 +52,7 @@ void shadertest(){
     glAttachShader(shaderProgram, fragmentShader);  //anexa o fragment shader ao programa
     glLinkProgram(shaderProgram);
 
+    //código constante de verificação de sucesso de construção programa do shaderProgram
     glGetProgramiv(shaderProgram, GL_LINK_STATUS, &success);
     if(!success) {
         glGetProgramInfoLog(shaderProgram, 512, NULL, infoLog);
@@ -64,11 +67,18 @@ void shadertest(){
 int main(){
     window game_window(600, 400, "VOX TEST"); //Objeto de janela personalizado
 
-    //Projeto de triângulo 2D
+    //Projeto de triângulo duplo 2D
     float triangleVertices[] = {
-        -0.5f, -0.5f, 0.0f,
-        0.5f, -0.5f, 0.0f,
-        0.0f,  0.5f, 0.0f
+        0.5f,  0.5f, 0.0f,  // top right
+        0.5f, -0.5f, 0.0f,  // bottom right
+       -0.5f, -0.5f, 0.0f,  // bottom left
+       -0.5f,  0.5f, 0.0f   // top left 
+    };
+
+    //Índices de triângulo duplo 2D
+    unsigned int indices[] = {
+        0, 1, 3,  // first triangle
+        1, 2, 3   // second triangle
     };
 
     //iniialização de buffers do processo de renderização para testes (VAO)
@@ -82,8 +92,16 @@ int main(){
     glBindBuffer(GL_ARRAY_BUFFER, VBO);
     glBufferData(GL_ARRAY_BUFFER, sizeof(triangleVertices), triangleVertices, GL_STATIC_DRAW);
 
-    shadertest();
+    //inicialização de buffers do processo de renderização para testes (EBO)
+    unsigned int EBO; //Element Buffer Object
+    glGenBuffers(1, &EBO);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
 
+    //chamada de compilação, vinculação e uso de shader
+    standardShader();
+
+    //não sei a função dessa parte
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
     glEnableVertexAttribArray(0);
 
@@ -96,7 +114,10 @@ int main(){
         glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT);
 
-        glDrawArrays(GL_TRIANGLES, 0, 3); //Desenha o triângulo
+        glPolygonMode(GL_FRONT_AND_BACK, GL_LINE); //Desenha o triângulo em linhas
+
+        //glDrawArrays(GL_TRIANGLES, 0, 3); //Desenha o triângulo a partir de um arraay de vértices VBO
+        glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0); //Desenha o triângulo duplo a partir de elementos no EBO
 
         //Troca os buffers front e back
         game_window.swap_buffers();
