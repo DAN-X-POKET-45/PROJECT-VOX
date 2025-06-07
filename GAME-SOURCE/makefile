@@ -49,7 +49,8 @@ LIBS= -lglew \
 ##############################
 
 #Source files
-src = src/main.cpp src/window/window_object.cpp
+src = src/main.cpp src/window/window_object.cpp \
+	  src/vox-engine/static_shader.cpp
 
 all:
 	@echo $(shell date): Compiling Project-VOX [core] at $(shell hostname) as $(shell whoami)

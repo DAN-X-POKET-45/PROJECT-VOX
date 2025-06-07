@@ -9,6 +9,9 @@
 #include <glew.h>    //Usando o GLEW
 #include <glfw3.h>
 
+//definição da variável estática para a dinamica do alternador de key callback
+void(*window::custom_callback)(int, int, int, int) = nullptr;
+
 window::window(int width, int height, const char* title){
     //verificador de inicializaçao da biblioteca GLFW
     if(!glfwInit()){
@@ -123,23 +126,43 @@ void window::framebuffer_size_callback(GLFWwindow* window, int width, int height
 }
 
 //tratamento de condicionais CALLBACK de entrada da janela GLFW
-void window::key_callback(GLFWwindow* window, int key, int scancode, int action, int mods) {
+void window::key_callback(GLFWwindow* window, int key, int scancode, int action, int mods){
     if (action == GLFW_PRESS) {
         switch(key){
-            case GLFW_KEY_W:
-                std::cout << "W key is pressed" << std::endl;
-                break;
-            case GLFW_KEY_S:
-                std::cout << "S key is pressed" << std::endl;
+            case GLFW_KEY_Q:
+                std::cout << "Q key is pressed - RED++" <<'\n';
                 break;
             case GLFW_KEY_A:
-                std::cout << "A key is pressed" << std::endl;
+                std::cout << "A key is pressed - RED--" << '\n';
+                break;
+            case GLFW_KEY_W:
+                std::cout << "W key is pressed - GREEN++" << '\n';
+                break;
+            case GLFW_KEY_S:
+                std::cout << "S key is pressed - GREEN--" << '\n';
+                break;
+            case GLFW_KEY_E:
+                std::cout << "E key is pressed - BLUE++" << '\n';
                 break;
             case GLFW_KEY_D:
-                std::cout << "D key is pressed" << std::endl;
+                std::cout << "D key is pressed - BLUE--" << '\n';
                 break;
             default:
                 break;
         }
     }
+}
+
+//wrapper para passar ao GLFW
+void window::key_callback_wrapper(GLFWwindow* window, int key, int scancode, int action, int mods){
+    if(custom_callback){
+        custom_callback(key, scancode, action, mods);
+    }
+}
+
+//alternador de função de entrada de usuário
+void window::swap_key_callback(void(*callback)(int, int, int, int)){
+        custom_callback = callback;
+        // registra a wrapper que chama user_callback, passando o ponteiro fixo da janela
+        glfwSetKeyCallback(glfw_window, key_callback_wrapper);
 }

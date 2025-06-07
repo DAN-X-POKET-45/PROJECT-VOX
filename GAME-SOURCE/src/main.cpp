@@ -2,31 +2,26 @@
 #include <glew.h>
 #include <window.hpp>
 #include <cmath>
-//#include <imgui.h>
-//#include <imgui_impl_glfw.h>
-//#include <imgui_impl_opengl3.h>
+#include <shaders.hpp>
 
-unsigned int shaderProgram; //variável global para o programa de shader
+/*unsigned int shaderProgram; //variável global para o programa de shader
 
 //pré configuração para shader
 
 void standardShader(){
     const char* vertexShaderSource = "#version 420 core\n"
         "layout (location = 0) in vec3 aPos; //the position variable has attribute position 0;\n"
-        "layout (location = 1) in vec3 aColor; //the color variable has attribute position 1)\n"
-        "out vec3 customColor; //output a color to the fragment shader\n"
         "void main()\n"
         "{\n"
             "gl_Position = vec4(aPos, 1.0);\n"
-            "customColor = aColor;\n"
         "}";
 
     const char* fragmentShaderSource = "#version 420 core\n"
         "out vec4 FragColor;\n"
-        "in vec3 customColor;\n"
+        "uniform vec4 customColor;\n"
         "void main()\n"
         "{\n"
-        "   FragColor = vec4(customColor, 1.0);\n"
+        "   FragColor = vec4(customColor.xyz, 1.0f);\n"
         "}";
 
     unsigned int vertexShader;
@@ -70,18 +65,21 @@ void standardShader(){
     //logo após o uso do shader, ele pode ser deletado por já ter sido compilado para a GPU
     glDeleteShader(vertexShader);
     glDeleteShader(fragmentShader);
-}
+}*/
 
 int main(){
     window game_window(600, 400, "VOX TEST"); //Objeto de janela personalizado
 
+    static_shader shader; //objeto de shader estático
+    shader.activate(); //ativa o shader
+
     //Projeto de triângulo duplo 2D
     float triangleVertices[] = {
-        //positions        //colors
-        0.5f,  0.5f, 0.0f, 1.0f, 0.0f, 0.0f, // top right
-        0.5f, -0.5f, 0.0f, 0.0f, 1.0f, 0.0f, // bottom right
-       -0.5f, -0.5f, 0.0f, 0.0f, 0.0f, 1.0f, // bottom left
-       -0.5f,  0.5f, 0.0f, 0.0f, 0.0f, 0.0f  // top left 
+        //positions
+        0.5f,  0.5f, 0.0f,
+        0.5f, -0.5f, 0.0f,
+       -0.5f, -0.5f, 0.0f,
+       -0.5f,  0.5f, 0.0f
     };
 
     //Índices de triângulo duplo 2D
@@ -107,17 +105,11 @@ int main(){
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
     glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
 
-    //chamada de compilação, vinculação e uso de shader
-    standardShader();
-
     //CONFIGURAÇÃO DE PONTEIROS DE ATRIBUTOS DE VÉRTICE
 
     //atributo de posição
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)0);
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
     glEnableVertexAttribArray(0);
-    //atributo de cor de vértice
-    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)(3* sizeof(float)));
-    glEnableVertexAttribArray(1);
 
     //Veriificação de valor máximo de atributos de vértices suportados pela GPU
     int gpu_max_vertex_attribs;
@@ -130,18 +122,18 @@ int main(){
         game_window.poll_events();
 
         //Limpar a tela com uma cor de fundo
-        glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
+        glClearColor(1.0f, 1.0f, 1.0f, 1.0f); 
         glClear(GL_COLOR_BUFFER_BIT);
 
         //glPolygonMode(GL_FRONT_AND_BACK, GL_LINE); //Desenha o triângulo em linhas
 
+        /*int vertexColorLocation = glGetUniformLocation(shaderProgram, "customColor");
+        glUniform4f(vertexColorLocation, 1.0f, 0.0f, 0.0f, 1.0f);*/
+
+        shader.set_float_uniform("customColor", 1.0f); //define a cor do triângulo como vermelho
+
         //glDrawArrays(GL_TRIANGLES, 0, 3); //Desenha o triângulo a partir de um arraay de vértices VBO
         glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0); //Desenha o triângulo duplo a partir de elementos no EBO
-
-        float timeValue = glfwGetTime();
-        float greenValue = (sin(timeValue) / 2.0f) + 0.5f;
-        int vertexColorLocation = glGetUniformLocation(shaderProgram, "customColor");
-        glUniform4f(vertexColorLocation, 0.0f, greenValue, 0.0f, 1.0f);
 
         //Troca os buffers front e back
         game_window.swap_buffers();

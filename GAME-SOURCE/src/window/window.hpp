@@ -36,6 +36,9 @@ public:
     //define o título da janela
     void set_title(const char* title);
 
+    //alternador de função de entrada de usuário
+    void swap_key_callback(void(*callback)(int, int, int, int));
+
     //destrutor de obejto da janela
     ~window();
 
@@ -46,8 +49,14 @@ private:
     //função de redimensionamento CALLBACK do contexto OpenGL em realação a janela
     static void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 
+    //ESPAÇO DE FUNÇÕES PARA A DINAMICA DE ALTERNADOR DE KEY CALLBACK
+    //função simples sem a nserção na assinatura dde função da glfw_windowd
+    static void (*custom_callback)(int, int, int, int); // ponteiro para a função simples
     //função CALLBACK de detecção de entrada de usuário
     static void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods);
+    //wrapper para passar ao GLFW
+    static void key_callback_wrapper(GLFWwindow* window, int key, int scancode, int action, int mods);
+
 };
 
 
