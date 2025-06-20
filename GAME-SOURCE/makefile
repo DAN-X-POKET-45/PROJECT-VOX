@@ -24,8 +24,9 @@ CXXFLAGS = -Wall
 INCLUDE_DIRS= -Ilibs/GLEW \
 	          -Ilibs/GLFW \
 			  -Ilibs/DearImGui \
+			  -Ilibs/GLM \
 			  -Isrc/window \
-			  -Isrc/vox-engine
+			  -Isrc/vox-engine/shaders
 
               
 
@@ -50,7 +51,7 @@ LIBS= -lglew \
 
 #Source files
 src = src/main.cpp src/window/window_object.cpp \
-	  src/vox-engine/static_shader.cpp
+	  src/vox-engine/shaders/static_shader.cpp
 
 all:
 	@echo $(shell date): Compiling Project-VOX [core] at $(shell hostname) as $(shell whoami)

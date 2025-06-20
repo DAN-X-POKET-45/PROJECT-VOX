@@ -2,70 +2,9 @@
 #include <glew.h>
 #include <window.hpp>
 #include <cmath>
-#include <shaders.hpp>
+#include <static_shader.hpp>
 
-/*unsigned int shaderProgram; //variável global para o programa de shader
 
-//pré configuração para shader
-
-void standardShader(){
-    const char* vertexShaderSource = "#version 420 core\n"
-        "layout (location = 0) in vec3 aPos; //the position variable has attribute position 0;\n"
-        "void main()\n"
-        "{\n"
-            "gl_Position = vec4(aPos, 1.0);\n"
-        "}";
-
-    const char* fragmentShaderSource = "#version 420 core\n"
-        "out vec4 FragColor;\n"
-        "uniform vec4 customColor;\n"
-        "void main()\n"
-        "{\n"
-        "   FragColor = vec4(customColor.xyz, 1.0f);\n"
-        "}";
-
-    unsigned int vertexShader;
-    vertexShader = glCreateShader(GL_VERTEX_SHADER);
-    glShaderSource(vertexShader, 1, &vertexShaderSource, NULL);
-    glCompileShader(vertexShader);
-
-    //código constante de verificação de sucesso de compilação do vertexShader
-    int success;
-    char infoLog[512];
-    glGetShaderiv(vertexShader, GL_COMPILE_STATUS, &success);
-    if(!success){
-        glGetShaderInfoLog(vertexShader, 512, NULL, infoLog);
-        std::cout << "ERROR: VERTEX SHADER COMPILATION_FAILED" << "\n" << infoLog << "\n";
-    };
-
-    unsigned int fragmentShader;
-    fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
-    glShaderSource(fragmentShader, 1, &fragmentShaderSource, NULL);
-    glCompileShader(fragmentShader);
-
-    //fim da compilação de shaders
-
-    //início da criação do programa de shader
-
-    shaderProgram = glCreateProgram();
-
-    glAttachShader(shaderProgram, vertexShader);    //anexa o vertex shader ao programa
-    glAttachShader(shaderProgram, fragmentShader);  //anexa o fragment shader ao programa
-    glLinkProgram(shaderProgram);
-
-    //código constante de verificação de sucesso de construção programa do shaderProgram
-    glGetProgramiv(shaderProgram, GL_LINK_STATUS, &success);
-    if(!success) {
-        glGetProgramInfoLog(shaderProgram, 512, NULL, infoLog);
-    }
-
-    shaderProgram = shaderProgram; //armazena o programa de shader na variável global
-
-    glUseProgram(shaderProgram); //após esta chamada de função, qualquer desenho de objeto usará este programa de shader
-    //logo após o uso do shader, ele pode ser deletado por já ter sido compilado para a GPU
-    glDeleteShader(vertexShader);
-    glDeleteShader(fragmentShader);
-}*/
 
 int main(){
     window game_window(600, 400, "VOX TEST"); //Objeto de janela personalizado

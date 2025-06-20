@@ -2,7 +2,7 @@
 #include <glew.h>
 #include <window.hpp>
 #include <cmath>
-#include <shaders.hpp>
+#include <static_shader.hpp>
 
 static_shader::static_shader(){
     //define os shaders de vértice e fragmento
