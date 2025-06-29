@@ -14,30 +14,18 @@ int main(){
 
     //Projeto de triângulo duplo 2D
     float triangleVertices[] = {
-        //Position
-        -0.5f, -0.5f,  0.0f, // Vértice inferior esquerdo
-        0.5f, -0.5f,  0.0f,  // Vértice inferior direito
-        0.0f,  0.5f,  0.0f   // Vértice superior (topo)
+        //positions
+        0.5f,  0.5f, 0.0f,
+        0.5f, -0.5f, 0.0f,
+       -0.5f, -0.5f, 0.0f,
+       -0.5f,  0.5f, 0.0f
     };
 
-    //Localização de textura
-    float texCoords[] = {
-        0.0f, 0.0f,
-        1.0f, 0.0f,
-        0.5f, 1.0f
+    //Índices de triângulo duplo 2D
+    unsigned int indices[] = {
+        0, 1, 3,  // first triangle
+        1, 2, 3   // second triangle
     };
-
-    //Parâmetros de configuração de desalocação de textura caso exceda o intervalo -1 e 1
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-
-    //Prâmetros de configuração de filtro de textura
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-
-    //Parâmetros de configuração de mipmap de textura
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 
     //iniialização de buffers do processo de renderização para testes (VAO)
     unsigned int VAO; //Vertex Array Object
@@ -50,6 +38,12 @@ int main(){
     glBindBuffer(GL_ARRAY_BUFFER, VBO);
     glBufferData(GL_ARRAY_BUFFER, sizeof(triangleVertices), triangleVertices, GL_STATIC_DRAW);
 
+    //inicialização de buffers do processo de renderização para testes (EBO)
+    unsigned int EBO; //Element Buffer Object
+    glGenBuffers(1, &EBO);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
+
     //CONFIGURAÇÃO DE PONTEIROS DE ATRIBUTOS DE VÉRTICE
 
     //atributo de posição
@@ -60,11 +54,6 @@ int main(){
     int gpu_max_vertex_attribs;
     glGetIntegerv(GL_MAX_VERTEX_ATTRIBS, &gpu_max_vertex_attribs);
     std::cout << "Max vertex attributes supported by GPU: " << gpu_max_vertex_attribs << '\n';
-
-    //carregamento da imagem da textura
-    int width, height, channels;
-    unsigned char *data = stbi_load("src/vox-engine/textures/container.jpg", &width, &height, &channels, 0);
-//parei aqui!!!
 
     //enquanto a janela não receber um sinal de fechamento
     while(!game_window.should_close()){

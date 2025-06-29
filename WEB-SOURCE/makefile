@@ -6,7 +6,7 @@
 #############################
 
 #Executable name
-TARGET = voxrun
+TARGET = web-test
 
 #C++ compiler
 CXX = g++
@@ -21,28 +21,18 @@ CXXFLAGS = -Wall
 ###########################
 
 #Header directories
-INCLUDE_DIRS= -Ilibs/GLEW \
-	          -Ilibs/GLFW \
-			  -Ilibs/DearImGui \
-			  -Ilibs/GLM \
-			  -Ilibs/STBIMG \
-			  -Isrc/window \
-			  -Isrc/vox-engine/shaders
+INCLUDE_DIRS = -Ilibs
 
               
 
 #Libs directories
-LIB_DIRS= -Llibs/GLEW \
-		  -Llibs/GLFW \
-		  -Llibs/DearImGui
+#LIB_DIRS= -Llibs
 
 
 
 #Included libraries (order matters)
-LIBS= -lglew \
-      -lGL \
-	  -lglfw3 \
-	  -limgui
+#LIBS= -l
+
 	
 
 
@@ -51,15 +41,14 @@ LIBS= -lglew \
 ##############################
 
 #Source files
-src = src/main.cpp src/window/window_object.cpp \
-	  src/vox-engine/shaders/static_shader.cpp
+src = src/main.cpp
 
 all:
-	@echo $(shell date): Compiling Project-VOX [core] at $(shell hostname) as $(shell whoami)
+	@echo $(shell date): Compiling Project-VOX [web-test] at $(shell hostname) as $(shell whoami)
 	@$(CXX) $(CXXFLAGS) -o $(TARGET) $(src) $(INCLUDE_DIRS) $(LIB_DIRS) $(LIBS)
-	@echo Project-VOX [core] compiled! Executable name: $(TARGET)
+	@echo Project-VOX [web-test] compiled! Executable name: $(TARGET)
 
 run:
-	@echo $(shell date): Runing Project-VOX [core] at $(shell hostname) via make directive as $(shell whoami)
+	@echo $(shell date): Runing Project-VOX [web-test] at $(shell hostname) via make directive as $(shell whoami)
 	@./$(TARGET)
 	@echo Test completed!

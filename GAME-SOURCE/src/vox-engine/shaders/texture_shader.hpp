@@ -1,12 +1,14 @@
-#ifndef PROJECT_VOX_ENGINE_SHADERS_FILE_HPP
-#define PROJECT_VOX_ENGINE_SHADERS_FILE_HPP
+#ifndef PROJECT_VOX_ENGINE_TEXTURE_SHADER_FILE_HPP
+#define PROJECT_VOX_ENGINE_TEXTURE_SHADER_FILE_HPP
 
 #include <iostream>
 #include <glew.h>
 #include <window.hpp>
 #include <cmath>
+#include <stb_image.hpp>
+#include <glm.hpp>
 
-// PROJECT VOX Engine - Static Shader Class
+// PROJECT VOX Engine - Texture Shader Class
 class texture_shader{
 public:
 
@@ -36,19 +38,20 @@ public:
         "   FragColor = vec4(customColor.xyz, 1.0f);\n"
         "}";
 
-    //testa erros de compilação
-    void test_compile_errors();
-
     //operadores de uniforms
 
     //insersor de uniform do tipo boolean
     void set_bool_uniform(const std::string &name, bool value) const;  
 
-    //insersor de uniform do tipo int
-    void set_int_uniform(const std::string &name, int value) const;
+    //insersores de uniform do tipo int
+    void set_int_uniform(const std::string &name, int X) const;        //uniform com 1 int
+    void set_int_uniform(const std::string &name, int X, int Y) const; //uniform com 2 int
 
-    //insersor de uniform do tipo float
-    void set_float_uniform(const std::string &name, float value) const;
+    //insersores de uniform do tipo float
+    void set_float_uniform(const std::string &name, float X) const;                            //uniform com 1 float
+    void set_float_uniform(const std::string &name, float X, float Y) const;                   //uniform com 2 float
+    void set_float_uniform(const std::string &name, float X, float Y, float Z) const;          //uniform com 3 float
+    void set_float_uniform(const std::string &name, float X, float Y, float Z, float W) const; //uniform com 4 float
 
     //destrutor
     ~texture_shader();
@@ -56,4 +59,4 @@ public:
 
 
 
-#endif //PROJECT_VOX_ENGINE_SHADERS_FILE_HPP
+#endif //PROJECT_VOX_ENGINE_TEXTURE_SHADER_FILE_HPP

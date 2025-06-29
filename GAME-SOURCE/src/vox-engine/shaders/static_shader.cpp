@@ -10,7 +10,7 @@ static_shader::static_shader(){
 
     //buffers de armazenamento de informações e teste de erro
     int success;
-    char error_log[512];
+    char error_log[1024];
 
     //compilação do vertex shader
     vertex_shader = glCreateShader(GL_VERTEX_SHADER);
@@ -72,15 +72,35 @@ static_shader::~static_shader(){
 
 //insersor de uniform do tipo boolean
 void static_shader::set_bool_uniform(const std::string &name, bool value)const{
-    glUniform1i(glGetUniformLocation(ID, name.c_str()), (int)value); 
+    glUniform1i(glGetUniformLocation(ID, name.c_str()), (int)value);
 }
 
-//insersor de uniform do tipo int
-void static_shader::set_int_uniform(const std::string &name, int value)const{
-    glUniform1i(glGetUniformLocation(ID, name.c_str()), value); 
+
+
+//insersores de uniform do tipo int
+void static_shader::set_int_uniform(const std::string &name, int X)const{ //uniform com 1 int
+    glUniform1i(glGetUniformLocation(ID, name.c_str()), X);
 }
 
-//insersor de uniform do tipo float
-void static_shader::set_float_uniform(const std::string &name, float value)const{
-    glUniform1f(glGetUniformLocation(ID, name.c_str()), value); 
-} 
+void static_shader::set_int_uniform(const std::string &name, int X, int Y)const{ //uniform com 2 int
+    glUniform2i(glGetUniformLocation(ID, name.c_str()), X, Y);
+}
+
+
+
+//insersores de uniform do tipo float
+void static_shader::set_float_uniform(const std::string &name, float X)const{ //uniform com 1 float
+    glUniform1f(glGetUniformLocation(ID, name.c_str()), X); 
+}
+
+void static_shader::set_float_uniform(const std::string &name, float X, float Y)const{ //uniform com 2 float
+    glUniform2f(glGetUniformLocation(ID, name.c_str()), X, Y);
+}
+
+void static_shader::set_float_uniform(const std::string &name, float X, float Y, float Z)const{ //uniform com 3 float
+    glUniform3f(glGetUniformLocation(ID, name.c_str()), X, Y, Z);
+}
+
+void static_shader::set_float_uniform(const std::string &name, float X, float Y, float Z, float W)const{ //uniform com 4 float
+    glUniform4f(glGetUniformLocation(ID, name.c_str()), X, Y, Z, W);
+}
