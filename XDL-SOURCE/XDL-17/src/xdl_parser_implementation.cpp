@@ -50,14 +50,15 @@ namespace xdl{
         /*===================================*/
         /*        TOKENS DE ETIQUETAS        */
         /*===================================*/
-
+/*
+        PARA USO POSTERIOR
         //tokens de declaração de etiquetas
         const char LEFT_GROUP_TOKEN = '<';
         const char RIGHT_GROUP_TOKEN = '>';
 
         //tokens de fechamento
         const char CLOSER_TOKEN = '/';
-
+*/
         /*===================================*/
 
 
@@ -130,7 +131,7 @@ namespace xdl{
                 int _closer_tag_left_pos = rawdata.find_last_of('<');
 
                 //localiza e armazena a posição da última aparição do RIGHT_GROUP_TOKEN >
-                int _closer_tag_right_pos = rawdata.find_last_of('>');
+                //int _closer_tag_right_pos = rawdata.find_last_of('>'); comentado por inutilidade, usar para casos isolados futuros
 
 
                 //CONSTRUÇÃO DA <TAG>VALOR<TAG/>
@@ -173,7 +174,8 @@ namespace xdl{
 
 
 
-        //ao terminar de ler todas as linhas retorna o objeto principal
+        //ao terminar de ler todas as linhas retorna o objeto principal e fecha o arquivo
+        xdl_archive.close();
         return main_object;
 
         /*retorno padrão de teste
@@ -205,12 +207,13 @@ namespace xdl{
         archive_content_as_stream << xdl_archive.rdbuf();
 
         //retorna o objeto de string stream
+        xdl_archive.close();
         return archive_content_as_stream;
     }
 
 
     //montador privado para cada linha do objeto node
-    void file_reader::node_object_assembler(const std::string& name, const std::string& valor, const int& ident){
+    void file_reader::node_object_assembler(const std::string& name, const std::string& valor, unsigned const int& ident){
         size_t pos = 0;
         node* current_vector = &main_object;
 
@@ -229,7 +232,6 @@ namespace xdl{
         }else if(ident == 0){
             main_object.add_child(name, valor);
         }
-        
 
     }
 

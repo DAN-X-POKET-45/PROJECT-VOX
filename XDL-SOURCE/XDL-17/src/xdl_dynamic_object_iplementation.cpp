@@ -14,13 +14,13 @@ namespace xdl{
                 return child;
             }
         }
-        throw std::out_of_range("\033[31m[XDL-NODE RETURNING ERROR!]\033[0m Child not found!");
+        throw std::out_of_range(std::string("\033[31m[XDL-NODE RETURNING ERROR!]\033[0m") + " \"" + key_in + "\" - " + "Child not found!");
     }
 
     //retornador de referência de nodo pelo operador[] a partir do índice
-    node& node::operator[](const int& key_index){
-        if(key_index < 0 || key_index > childs.size()){
-            throw std::out_of_range("\033[31m[XDL-NODE RETURNING ERROR!]\033[0m index does not match the object vector");
+    node& node::operator[](unsigned const int& key_index){
+        if(key_index < 0 || key_index >= childs.size()){
+            throw std::out_of_range(std::string("\033[31m[XDL-NODE RETURNING ERROR!]\033[0m") + " \"" + std::to_string(key_index) + "\" - " + "index does not match the object vector");
         }else{
             return childs[key_index];
         }
@@ -75,8 +75,16 @@ namespace xdl{
         value = input_value;
     }
 
+    //retorno de valor em formato de string
     std::string node::get_standard_value(){
         return value;
+    }
+
+    //retorno de valor em formato de stringstream
+    std::stringstream node::get_sstream_value(){
+        std::stringstream sstream_value;
+        sstream_value << value;
+        return sstream_value;
     }
 
 

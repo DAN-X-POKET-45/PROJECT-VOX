@@ -75,7 +75,6 @@ namespace xdl{
         value = input_value;
     }
 
-    //retorno de valor em formato de string
     std::string node::get_standard_value(){
         return value;
     }

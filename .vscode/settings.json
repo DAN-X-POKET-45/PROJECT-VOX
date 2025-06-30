@@ -98,7 +98,8 @@
         "any": "cpp",
         "coroutine": "cpp",
         "source_location": "cpp",
-        "future": "cpp"
+        "future": "cpp",
+        "__memory": "cpp"
     },
     "C_Cpp.errorSquiggles": "disabled"
 }

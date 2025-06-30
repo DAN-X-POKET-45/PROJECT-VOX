@@ -40,6 +40,7 @@ int main(int argc, char **argv){
             
                 }
             }; //Final da inicialização do objeto
+*/
 
 /*
 ===================================
@@ -66,6 +67,7 @@ int main(int argc, char **argv){
 
 
     std::cout << "-----------------" << '\n';
+    std::cout << test["words list"]["words1"]["root"].get_sstream_value().str() << '\n';
 
 
 

@@ -67,6 +67,8 @@ int main(int argc, char **argv){
 
     std::cout << "-----------------" << '\n';
 
+    std::cout << test["Toyota"]["op1"].get_sstream_value() << '\n';
+
 
 
     //xdl::file_writer tchau("write.xdl");

@@ -9,7 +9,7 @@ __  __  ____  _
 /_/\_\ |____/|_____|
 
 Extensive Direct Language - megumin
-source version: 16.0 
+source version: 17.0 
 codename: megumin
 author: DAN-X POKET 45 (Daniel poket 45)
 license: PRIVATE
@@ -71,7 +71,7 @@ namespace xdl{
          * @param key_index the index of the child node
          * @return node - the reference of the child node
          */
-        node& operator[](const int& key_index);
+        node& operator[](unsigned const int& key_index);
 
         /**
          * @brief search for a node by name
@@ -154,6 +154,12 @@ namespace xdl{
          */
         std::string get_standard_value();
 
+        /**
+         * @brief convert the value and return the std::stringstream value of the node
+         * @return std::stringstream - the std::stringstrem value converted
+         */
+        std::stringstream get_sstream_value();
+
     /*===================================*/
 
 
@@ -212,7 +218,7 @@ namespace xdl{
          */
         std::stringstream convert_to_stringstream();
     private:
-        void node_object_assembler(const std::string& name, const std::string& valor, const int& ident);
+        void node_object_assembler(const std::string& name, const std::string& valor, unsigned const int& ident);
 
         /*===================================*/
         /*         OBJETO DE RETORNO         */
