@@ -47,22 +47,22 @@ namespace crow
             switch (level)
             {
                 case LogLevel::Debug:
-                    prefix = "DEBUG   ";
+                    prefix = "\033[1m\033[33mDEBUG\033[0m";
                     break;
                 case LogLevel::Info:
-                    prefix = "INFO    ";
+                    prefix = "\033[1m\033[37mINFO\033[0m";
                     break;
                 case LogLevel::Warning:
-                    prefix = "WARNING ";
+                    prefix = "\033[35mWARNING\033[0m";
                     break;
                 case LogLevel::Error:
-                    prefix = "ERROR   ";
+                    prefix = "\033[1m\033[31mERROR\033[0m";
                     break;
                 case LogLevel::Critical:
-                    prefix = "CRITICAL";
+                    prefix = "\033[1m\033[31mCRITICAL\033[0m";
                     break;
             }
-            std::cerr << std::string("(") + timestamp() + std::string(") [") + prefix + std::string("] ") + message << std::endl;
+            std::cerr << std::string("(") + timestamp() + std::string(") [") + prefix + std::string("] ") + message << '\n';
         }
 
     private:

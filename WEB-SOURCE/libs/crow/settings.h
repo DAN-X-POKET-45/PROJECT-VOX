@@ -32,6 +32,9 @@
 #define CROW_STATIC_ENDPOINT "/static/<path>"
 #endif
 
+/*#define CROW_USE_LOCALTIMEZONE - for timezone configuration*/
+#define CROW_USE_LOCALTIMEZONE
+
 // compiler flags
 
 #if defined(_MSC_VER)
