@@ -3,7 +3,7 @@
 #include <string>
 #include <vector>
 #include <sstream>
-#include "xdl.hpp"
+#include <xdl.hpp>
 
 int main(int argc, char **argv){
     /*xdl::node oi={"root", "", {
@@ -68,7 +68,13 @@ int main(int argc, char **argv){
 
     std::cout << "-----------------" << '\n';
     std::cout << test["words list"]["words1"]["root"].get_sstream_value().str() << '\n';
-
+    /*
+    xdl::log(xdl::log_type::DEBUG, "MAIN", "Testando log de debug");
+    xdl::log(xdl::log_type::INFO, "MAIN", "Testando log de info");
+    xdl::log(xdl::log_type::WARNING, "MAIN", "Testando log de warning");
+    xdl::log(xdl::log_type::ERROR, "MAIN", "Testando log de erro");
+    xdl::log(xdl::log_type::CRITICAL, "MAIN", "Testando log de erro crítico");
+    */
 
 
     //xdl::file_writer tchau("write.xdl");

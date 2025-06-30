@@ -317,8 +317,49 @@ namespace xdl{
 
 
     /*===================================*/
-    /*            DEPURAÇÃO              */
+    /*          DEPURAÇÃO E LOGS         */
     /*===================================*/
+
+    /**
+     * @brief log type enum
+     * @details This enum is used to define the type of log that will be printed or returned
+     * DEBUG - for debug messages 
+     * INFO - for information messages
+     * WARNING - for warning messages
+     * ERROR - for error messages
+     * CRITICAL - for critical error messages
+     */
+    enum class log_type{
+        ///@brief log type for debug messages, print in std::cout
+        DEBUG,
+        ///@brief log type for information messages, print in std::cout
+        INFO,
+        ///@brief log type for warning messages, print in std::cerr
+        WARNING,
+        ///@brief log type for error messages, print in std::cerr
+        ERROR,
+        ///@brief log type for critical error messages, print in std::cerr
+        CRITICAL
+    };
+
+    /**
+     * @brief log with print in std::cout or std::cerr
+     * @param type the type of the log (see @ref xdl::log_type enum)
+     * @param specification the specification of the log
+     * @param message the message of the log
+     * @return std::string - the log message as a string
+     */
+    void log(log_type type, const std::string& specification, const std::string& message);
+
+    /**
+     * @brief log with return as string
+     * @param type the type of the log (see log_type enum)
+     * @param specification the specification of the log
+     * @param message the message of the log
+     * @param return_as_str if true, return the log as a string, if false, return [...] to hide the log content but identify that had a log there
+     * @return std::string - the log message as a string
+     */
+    std::string log(log_type type, const std::string& specification, const std::string& message, bool return_as_str);
 
     /**
      * @brief basic size analizer
