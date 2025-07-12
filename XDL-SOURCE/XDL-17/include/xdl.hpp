@@ -408,6 +408,15 @@ namespace xdl{
     */
     bool check_group_syntax_errors(const std::string& xdl_file_path);
 
+
+
+    /**
+    * @brief checagem de erros de sintaxe em blocos e linhas de comentários
+    * @param raw_input_data fluxo de entrada de dados de um arquivo ou string com conteúdo bruto
+    * @return valor booleano que indica erros
+    */
+    bool check_comment_syntax_errors(const std::string& xdl_file_path);
+
 }
 
 

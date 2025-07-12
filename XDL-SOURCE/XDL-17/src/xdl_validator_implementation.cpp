@@ -327,7 +327,7 @@ namespace xdl{
 
         }
 
-        //verifica pela última vez sehá algum grupo aberto
+        //verifica pela última vez se há algum grupo aberto
         if(keyhole == true){
             std::cout << "[XDL VALIDATOR - GROUP SYNTAX] all groups are closed - VALIDATED!" << '\n';
             return true;
@@ -339,8 +339,146 @@ namespace xdl{
 
 
 
-    bool check_close_errors(const std::ifstream& raw_input_data){
-        return false;
-    }
+    bool check_comment_syntax_errors(const std::string& xdl_file_path){
+        //inicialização de stream
+        std::ifstream raw_input_data(xdl_file_path);
 
+        //Verifica se o arquivo foi aberto corretamente
+        if(!raw_input_data.is_open()){
+            std::cerr << "[XDL VALIDATOR - COMMENT SYNTAX] Failed to open XDL archive in validating mode!" << '\n';
+            //Se não puder abrir o arquivo, fecha o arquiv, gera um erro e retorna false
+            raw_input_data.close();
+            std::cerr << "[XDL VALIDATOR - COMMENT SYNTAX] XDL operation with file->" << xdl_file_path << " stoped!" << '\n';
+            return false;
+        }
+
+        //objeto de armazenagem de texto lido na linha atual dentro do arquivo
+        std::string text;
+
+        //objeto de armazenagem da linha atual
+        int current_line = 1;
+
+        //variável variativa de verificação de grupos de comentários abertos
+        int open_comment_blocks = 0;
+
+        //buffer de comentários em bloco <#></#>
+        unsigned int total_block_comment_count = 0;
+        //buffer de comentários em linha <##>
+        unsigned int total_line_comment_count = 0;
+
+        //indicador de numeração de bloco de comentário
+        unsigned int comment_block_indicator_number = 0;
+
+        //variável variativa de auxílio de verificação de comentários
+        bool inside_comment_block = false;
+
+        //conteúdo do comentário completo
+        std::string comment ="";
+        //quantidade de linhas do comentário completo
+        unsigned int total_comment_block_lines = 0;
+
+        //analisador de linhas carregadas dentro da string text
+        while(std::getline(raw_input_data, text)){
+            //se estiver dentro de um bloco de comentário
+            if(inside_comment_block == true){
+                //log de linha interna de bloco de comentário de bloco de comentário
+                std::cout << "[XDL VALIDATOR - COMMENT SYNTAX] inside the comment block number:" << comment_block_indicator_number << " in line: " << current_line << '\n';
+
+                //aumenta a quantidade total de linhasdo bloco de comentário
+                total_comment_block_lines++;
+                
+                //se o ponteiro estiver dentro de um bloco de comentário, adiciona a linha atual ao comentário completo
+                comment += text + '\n';
+                //log de adição de linha ao comentário completo
+                std::cout << "[XDL VALIDATOR - COMMENT SYNTAX] adding content: " << text << " in line: " << current_line << " to comment block number: " << comment_block_indicator_number << '\n';
+
+            //verifica se a linha é a abertura de um bloco de comentário
+            }else if(text.find("<#>") != std::string::npos && text.find("</#>") == std::string::npos){
+                //log de abertura de bloco de comentário
+                std::cout << "[XDL VALIDATOR - COMMENT SYNTAX] openning comment block found in line: " << current_line << '\n';
+
+                //adiciona o comentário da linha atual a varável de comentário completo
+                comment += text + '\n';
+                //log de adição de linha ao comentário completo
+                std::cout << "[XDL VALIDATOR - COMMENT SYNTAX] adding content: " << text << " in line: " << current_line << " to comment block number: " << comment_block_indicator_number << '\n';
+
+                //se a linha for a abertura de um bloco de comentário decrementa a variável de controle de abertura de bloco
+                open_comment_blocks--;
+                //indica que o ponteiro está dentro de um bloco de comentário
+                inside_comment_block = true;
+                //aumenta o indicador de número de bloco de comentário
+                comment_block_indicator_number++;
+
+            //verifica se a linha é o fechamento de um bloco de comentário
+            }else if(text.find("</#>") != std::string::npos && text.find("<#>") == std::string::npos){
+                //log de fechamento de bloco de comentário
+                std::cout << "[XDL VALIDATOR - COMMENT SYNTAX] closing comment block found in line: " << current_line << '\n';
+
+                //se a linha for o fechamento de um bloco de comentário incrementa a variável de controle de abertura de bloco
+                open_comment_blocks++;
+                //indica que o ponteiro não está mais dentro de um bloco de comentário
+                inside_comment_block = false;
+
+                //adiciona o comentário da linha atual (a última linha) a varável de comentário completo
+                comment += text + '\n';
+                //log de adição de linha ao comentário completo
+                std::cout << "[XDL VALIDATOR - COMMENT SYNTAX] adding content: " << text << " in line: " << current_line << " to comment block number: " << comment_block_indicator_number << '\n';
+
+                //incrementa o contador total de blocos de comentários
+                total_block_comment_count++;
+                //incrementa o contador total de linhas do bloco de comentários
+                total_comment_block_lines++;
+
+                //log de fechamento
+                std::cout << "[XDL VALIDATOR - COMMENT SYNTAX] closing comment block number: " << comment_block_indicator_number << " in line: " << current_line << '\n';
+                //log de finalização e contagem das linhas do bloco de comentário
+                std::cout << "[XDL VALIDATOR - COMMENT SYNTAX] finalized comment block number: " << comment_block_indicator_number << " closed with " << total_comment_block_lines << " lines!" << '\n';
+                //log do conteúdo do comentário completo
+                std::cout << "[XDL VALIDATOR - COMMENT SYNTAX] closed comment block number: " << comment_block_indicator_number << " content: " << comment << '\n';
+                //limpa o conteúdo do comentário completo
+                comment = "";
+                //limpa a quantidade de linhas do bloco de comentário
+                total_comment_block_lines = 0;
+            
+            //se tiver uma abertura e fechamento na mesma linha
+            }else if(text.find("<#>") != std::string::npos && text.find("</#>") != std::string::npos){
+                //incrementa a varável de indicação de número de blocos de comentários
+                comment_block_indicator_number++;
+
+                //log de abertura e fechamento de bloco de comentário na mesma linha
+                std::cout << "[XDL VALIDATOR - COMMENT SYNTAX] openning and closing comment block number: " << comment_block_indicator_number << " found in single line: " << current_line << " with content: " << text << '\n';
+
+                //incrementa o contador total de blocos de comentários
+                total_block_comment_count++;
+                //incrementa o indicador de número de bloco de comentário
+                comment_block_indicator_number++;
+
+            //se a linha for um comentário de linha inteira
+            }else if(text.find("<##>") != std::string::npos){
+                //se a linha for um comentário de linha inteira, incrementa o contador de comentários de linha
+                total_line_comment_count++;
+                //log de comentário de linha
+                std::cout << "[XDL VALIDATOR - COMMENT SYNTAX] line comment found in line: " << current_line << " with content: " << text << '\n';
+            }else if(text.empty() || text.find_first_not_of(" ") == std::string::npos){
+                //se a linha for vazia, não faz nada
+                std::cout << "[XDL VALIDATOR - COMMENT SYNTAX] empty line found in line: " << current_line << '\n';
+            }
+
+            //incrementa o contador de linhas
+            current_line++;
+        }
+        
+        //se a variável de controle de abertura de bloco for diferente de zero retorna false
+        if(open_comment_blocks != 0){
+        std::cerr << "[XDL VALIDATOR - COMMENT SYNTAX] ERROR: there are unclosed comment blocks in the file!" << '\n';
+        return false;
+        }
+
+        std::cout << "[XDL VALIDATOR - COMMENT SYNTAX] Total block comments: " << total_block_comment_count << '\n';
+        std::cout << "[XDL VALIDATOR - COMMENT SYNTAX] Total line comments: " << total_line_comment_count << '\n';
+
+        //valida tudo e retorna true
+        std::cout << "[XDL VALIDATOR - COMMENT SYNTAX] All comment blocks are properly closed. VALIDATED!" << '\n';
+        return true;
+    }
 }

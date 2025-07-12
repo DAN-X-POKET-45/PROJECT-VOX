@@ -1,3 +1,5 @@
+<##>Extensive Direct Language v17 example
+
 <words list>
     <words1>
         <root>value</root>
@@ -11,3 +13,5 @@
         <list>null</list>
     </words2>
 </words list>
+
+<#>Comment block root</#>

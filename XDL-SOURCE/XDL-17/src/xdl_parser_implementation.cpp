@@ -25,8 +25,6 @@ namespace xdl{
             std::cerr << "\033[31m[XDL-PARSER]\033[0m XDL operation with file->" << xdl_file_path << " stoped!" << '\n';
         }
 
-
-
         /*===================================*/
         /*       VARIÁVEIS VARIATIVAS        */
         /*===================================*/
@@ -68,7 +66,8 @@ namespace xdl{
 
         //variável variativa de auxílio de verificação de fechamento de grupos
         int group_lock=0;
-
+        //variável variativa de auxílio de verificação de comentários
+        bool inside_comment_block = false;
         //declara a linha atual para o getline
         int current_line=1;
 
@@ -92,6 +91,41 @@ namespace xdl{
             _variable_tag_name="";
             _variable_tag_valor="";
             _variable_group_name="";
+
+            //início do tratamento de comentários
+            //elimina identação e garante que a linha começa com um <##> para comentário de linha inteira
+            size_t first_non_space = rawdata.find_first_not_of(' ');
+            if(first_non_space != std::string::npos && rawdata.substr(first_non_space, 4) == "<##>"){
+                current_line++;
+                continue;
+                
+            }
+
+            //se abrir e fechar um bloco de comentário <#></#> na mesma linha, pula a linha
+            if(rawdata.find("<#>") != std::string::npos && rawdata.find("</#>") != std::string::npos){
+                current_line++;
+                continue;
+
+            //se tiver apenas o <#> é o início de um bloco de comentário, pula a linha e as demais até o fechamento
+            }else if(rawdata.find("<#>") != std::string::npos){
+                inside_comment_block = true;
+                current_line++;
+                continue;
+            }
+            
+            //se tiver </#> é o fechamento de um bloco de comentário, pula a linha
+            if(rawdata.rfind("</#>") != std::string::npos){
+                inside_comment_block = false;
+                current_line++;
+                continue;
+            }
+                        
+            //se estiver dentro de um bloco de comentário, pula a linha
+            if(inside_comment_block){
+                current_line++;
+                continue;
+            } 
+            //fim do tratamento de comentários
 
             //identifica a identação da linha atual
             if(rawdata.find_first_not_of(' ')!=std::string::npos){
