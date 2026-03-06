@@ -264,9 +264,9 @@ int main(int argc, char* argv[]){
     CROW_CATCHALL_ROUTE(app)(not_found);
 
     //define a porta do servidor
-    app.port(8080)
-        .run();
-
+    app.bindaddr("::")
+   .port(8080)
+   .run();
     
     return 0;
 }
