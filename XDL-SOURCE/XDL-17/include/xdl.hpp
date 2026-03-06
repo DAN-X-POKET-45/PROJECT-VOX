@@ -8,7 +8,7 @@ __  __  ____  _
  /  \  | |_| | |___  
 /_/\_\ |____/|_____|
 
-Extensive Direct Language - megumin
+Extensive Directive Language - megumin
 source version: 17.0 
 codename: megumin
 author: DAN-X POKET 45 (Daniel poket 45)

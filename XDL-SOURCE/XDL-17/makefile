@@ -1,4 +1,4 @@
-#Automated compiler for Extensive Definition Language - XDL
+#Automated compiler for Extensive Directive Language - XDL
 #PROJECT-VOX branch compiler
 
 #############################
