@@ -9,7 +9,7 @@
 TARGET = web-test
 
 #C++ compiler
-CXX = g++
+CXX = clang++
 
 #Compiler flags/args
 CXXFLAGS = -Wall
