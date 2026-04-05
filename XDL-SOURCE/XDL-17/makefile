@@ -9,13 +9,13 @@
 TARGET = xdl_program_test
 
 #C++ compiler
-CXX = g++
+CXX = clang++
 
 #Compiler flags/args
 CXXFLAGS = -Wall
 
 #static library archiver
-AR = ar
+AR = clang-ar
 
 #static library archiver args
 ARFLAGS = rcs
